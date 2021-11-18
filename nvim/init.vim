@@ -2,9 +2,13 @@
 :set relativenumber
 :set autoindent
 :set tabstop=4
+:set shiftwidth=4
+:set smarttab
+:set softtabstop=4
 :set expandtab
 :set mouse=a
 :set colorcolumn=80,120
+:set updatetime=100
 
 :set t_Co=256
 
@@ -19,29 +23,30 @@ Plug 'https://github.com/preservim/tagbar'
 Plug 'https://github.com/tpope/vim-commentary'
 Plug 'https://github.com/neoclide/coc.nvim'
 Plug 'https://github.com/ray-x/lsp_signature.nvim'
+Plug 'https://github.com/jiangmiao/auto-pairs'
+Plug 'https://github.com/christoomey/vim-tmux-navigator'
+Plug 'https://github.com/APZelos/blamer.nvim'
 
 call plug#end()
 
 syntax on
 colorscheme onehalfdark
 
-nnoremap <C-f> : NERDTreeFocus<CR>
-nnoremap <C-t> : NERDTreeToggle<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 
-nmap <F8> : TagbarToggle<CR>
+nmap <F8> :TagbarToggle<CR>
 
-" make tab go through lsp options
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:NERDTreeDirArrowExpandable='+'
-let g:NERDTreeDirArrowCollapsible='-'
+let g:NERDTreeDirArrowCollapsible='~'
 
 let g:airline_theme='onehalfdark'
