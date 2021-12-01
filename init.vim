@@ -10,11 +10,10 @@
 :set colorcolumn=80,120
 :set incsearch
 
-:set t_Co=256
+highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin()
 
-Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'https://github.com/vim-airline/vim-airline'
 Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/ap/vim-css-color'
@@ -26,11 +25,9 @@ Plug 'https://github.com/ray-x/lsp_signature.nvim'
 Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
 Plug 'https://github.com/APZelos/blamer.nvim'
+Plug 'https://github.com/airblade/vim-gitgutter'
 
 call plug#end()
-
-syntax on
-colorscheme onehalfdark
 
 nnoremap <C-t> :NERDTreeToggle<CR>
 
@@ -48,8 +45,6 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='~'
-
-let g:airline_theme='onehalfdark'
 
 " TextEdit might fail if hidden is not set.
 set hidden
