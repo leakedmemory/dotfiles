@@ -4,7 +4,11 @@
 PPA_LIBRATBAG="ppa:libratbag-piper/piper-libratbag-git"
 PPA_CHROMIUM="ppa:xalt7x/chromium-deb-vaapi"
 
-REPOSITORIOS_GITHUB=(
+URL_DISCORD="https://discord.com/api/download?platform=linux&format=deb"
+
+DOWNLOAD_FOLDER="$HOME/Downloads/programs"
+
+GITHUB_REPOSITORIOS=(
     https://github.com/Lohan-Yrvine/config-files
     https://github.com/alacritty/alacritty.git
 )
@@ -31,6 +35,9 @@ PROGRAMAS_APT=(
     libxcb-xfixes0-dev
     libxkbcommon-dev
     python3
+    fonst-firacode
+    exuberant-ctags
+    ccls
 )
 
 PROGRAMAS_CURL=(
@@ -50,13 +57,19 @@ sudo apt update
 
 sudo apt-add-repository "$PPA_LIBRATBAG" -y
 sudo apt-add-repository "$PPA_CHROMIUM" -y
+sudo apt-add-repository universe
 
-for repositorio in ${REPOSITORIOS_GITHUB}; do
+for repositorio in ${GITHUB_REPOSITORIOS}; do
     git clone $repositorio
 done
 
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update
+
+mkdir "$DOWNLOAD_FOLDER" 
+wget -c "$URL_DISCORD" -P "$DOWNLOAD_FOLDER"
+
+sudo dpkg -i $DOWNLOAD_FOLDER/*.deb
 
 for programa in ${PROGRAMAS_APT}; do
     if ! dpkg -l | grep -q $programa; then
@@ -76,7 +89,7 @@ rustup update stable
 ## Pacotes Flakpak ##
 
 ## Pacotes Snap ##
-snap snap install spotify
+sudo snap install spotify
 
 ## Alacritty ##
 cd alacritty
@@ -99,11 +112,11 @@ gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-m
 cd
 
 # ----------------------------- PÓS-INSTALAÇÃO ----------------------------- #
-sudo apt update && sudo apt dis-upgrade -y
+sudo apt update
+sudo apt dist-upgrade
 flatpak update
 sudo apt autoclean
 sudo apt autoremove -y
-sudo dpkg --configure -a
 
 git config --global user.name "Lohan Pinheiro"
 git config --global user.email "o.lohan.yrvine@gmail.com"
@@ -115,3 +128,7 @@ cp -f ~/config-files/coc-settings.json ~/.config/nvim
 cp -f ~/config-files/alacritty.yml ~/.config/alacritty
 cp -f ~/config-files/.zshrc ~/
 cp -f ~/config-files/.tmux.conf ~/
+
+echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
+echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
+echo "configurar o coc.nvim"

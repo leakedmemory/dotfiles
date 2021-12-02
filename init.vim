@@ -15,9 +15,6 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 call plug#begin()
 
 Plug 'https://github.com/vim-airline/vim-airline'
-Plug 'https://github.com/preservim/nerdtree'
-Plug 'https://github.com/ap/vim-css-color'
-Plug 'https://github.com/ryanoasis/vim-devicons'
 Plug 'https://github.com/preservim/tagbar'
 Plug 'https://github.com/tpope/vim-commentary'
 Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
@@ -25,7 +22,6 @@ Plug 'https://github.com/ray-x/lsp_signature.nvim'
 Plug 'https://github.com/jiangmiao/auto-pairs'
 Plug 'https://github.com/christoomey/vim-tmux-navigator'
 Plug 'https://github.com/APZelos/blamer.nvim'
-Plug 'https://github.com/airblade/vim-gitgutter'
 
 call plug#end()
 
@@ -33,9 +29,13 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 
 nmap <F8> :TagbarToggle<CR>
 
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Troca o nome da variável 
+" Localmente 
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+" Globalmente
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
+" Alt + j/k move a linha atual para cima ou para baixo
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -65,12 +65,12 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+" if has("nvim-0.5.0") || has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
