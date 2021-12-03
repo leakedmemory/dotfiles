@@ -38,6 +38,7 @@ PROGRAMAS_APT=(
     fonst-firacode
     exuberant-ctags
     ccls
+    vlc
 )
 
 PROGRAMAS_CURL=(

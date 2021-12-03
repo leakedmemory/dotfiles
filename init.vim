@@ -25,8 +25,6 @@ Plug 'https://github.com/APZelos/blamer.nvim'
 
 call plug#end()
 
-nnoremap <C-t> :NERDTreeToggle<CR>
-
 nmap <F8> :TagbarToggle<CR>
 
 " Troca o nome da variável 
