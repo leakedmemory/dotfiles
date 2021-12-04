@@ -42,6 +42,7 @@ PROGRAMAS_APT=(
     timeshift
     git
     curl
+    wallch
 )
 
 PROGRAMAS_CURL=(
@@ -145,3 +146,4 @@ echo "configurar o coc.nvim"
 echo "configurar o timeshift"
 echo "setar o zsh como shell padrão"
 echo "setar o alacritty como terminal padrão"
+echo "configurar wallch"
