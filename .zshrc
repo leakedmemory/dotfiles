@@ -73,6 +73,7 @@ ZSH_THEME="spaceship"
 plugins=(
     git
     zsh-autosuggestions
+    # syntax-highlighting deve ser sempre o último plugin
     zsh-syntax-highlighting
 )
 

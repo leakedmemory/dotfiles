@@ -39,6 +39,9 @@ PROGRAMAS_APT=(
     exuberant-ctags
     ccls
     vlc
+    timeshift
+    git
+    curl
 )
 
 PROGRAMAS_CURL=(
@@ -84,6 +87,10 @@ for programa in ${PROGRAMAS_CURL}; do
     sh -c $programa
 done
 
+# zsh plugins
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 rustup override set stable
 rustup update stable
 
@@ -118,6 +125,7 @@ sudo apt dist-upgrade
 flatpak update
 sudo apt autoclean
 sudo apt autoremove -y
+sudo dpkg --configure -a
 
 git config --global user.name "Lohan Pinheiro"
 git config --global user.email "o.lohan.yrvine@gmail.com"
@@ -131,5 +139,9 @@ cp -f ~/config-files/.zshrc ~/
 cp -f ~/config-files/.tmux.conf ~/
 
 echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
+echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
 echo "configurar o coc.nvim"
+echo "configurar o timeshift"
+echo "setar o zsh como shell padrão"
+echo "setar o alacritty como terminal padrão"
