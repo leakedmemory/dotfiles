@@ -41,7 +41,6 @@ PROGRAMAS_APT=(
     ccls
     vlc
     timeshift
-    git
     curl
     wallch
     tmux
