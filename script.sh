@@ -11,6 +11,7 @@ DOWNLOAD_FOLDER="$HOME/Downloads/programs"
 GITHUB_REPOSITORIOS=(
     https://github.com/Lohan-Yrvine/config-files
     https://github.com/alacritty/alacritty.git
+    https://github.com/Lohan-Yrvine/wallpapers
 )
 
 PROGRAMAS_APT=(
@@ -147,3 +148,4 @@ echo "configurar o timeshift"
 echo "setar o zsh como shell padrão"
 echo "setar o alacritty como terminal padrão"
 echo "configurar wallch"
+echo "configurar mouse no piper"
