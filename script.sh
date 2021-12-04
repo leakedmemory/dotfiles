@@ -44,6 +44,7 @@ PROGRAMAS_APT=(
     git
     curl
     wallch
+    tmux
 )
 
 PROGRAMAS_CURL=(
@@ -149,3 +150,4 @@ echo "setar o zsh como shell padrão"
 echo "setar o alacritty como terminal padrão"
 echo "configurar wallch"
 echo "configurar mouse no piper"
+echo "setar source-file do tmux com <C-b> :source-file ~/.tmux.conf"
