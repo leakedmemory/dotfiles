@@ -139,7 +139,7 @@ cd
 sudo apt update -y
 sudo apt dist-upgrade
 sudo snap refresh
-flatpak update
+sudo flatpak update
 sudo apt autoclean
 sudo apt autoremove -y
 sudo dpkg --configure -a
@@ -155,14 +155,14 @@ cp -f ~/config-files/alacritty.yml ~/.config/alacritty
 cp -f ~/config-files/.zshrc ~/
 cp -f ~/config-files/.tmux.conf ~/
 
-echo ""
-echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
+sh -c "sleep 10 && wallch --constant &"
+
+echo "\n---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
 echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
 echo "configurar o coc.nvim"
 echo "configurar o timeshift"
 echo "setar o zsh como shell padrão"
 echo "setar o alacritty como terminal padrão"
-echo "configurar wallch"
 echo "configurar mouse no piper"
 echo "setar source-file do tmux com <C-b> :source-file ~/.tmux.conf"

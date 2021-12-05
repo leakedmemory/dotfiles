@@ -105,5 +105,19 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# command for zsh startup with tmux open
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+  exec tmux
+fi
+
+alias update="
+    echo 'APT UPDATES'
+    sudo apt update -y
+    echo '\nSNAP UPDATES'
+    sudo snap refresh
+    echo '\nFLATPAK UPDATES'
+    sudo flatpak update
+"
+
 # fpath for zsh integration with alacritty
 fpath+=${ZDOTDIR:-~}/.zsh_functions
