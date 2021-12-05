@@ -70,13 +70,13 @@ sudo rm /var/cache/apt/archives/lock
 
 sudo apt update -y
 
-echo; echo "--> Adicionando repositórios ppa"
+echo "\n --> Adicionando repositórios ppa"
 for repositorio in ${PPA_REPOSITORIOS[@]}; do
     sudo apt-add-repository $repositorio -y
 done
 sudo apt-add-repository universe
 
-echo; echo "--> Clonando repositórios do github"
+echo "\n --> Clonando repositórios do github"
 for repositorio in ${GITHUB_REPOSITORIOS[@]}; do
     git clone $repositorio
 done
@@ -84,48 +84,48 @@ done
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update -y
 
-echo; echo "--> Baixando e instalando programas .deb"
+echo "\n --> Baixando e instalando programas .deb"
 mkdir $DOWNLOAD_FOLDER 
 for programa in ${PROGRAMAS_DEB}; do
     wget -c $programa -p $DOWNLOAD_FOLDER
 done
 sudo dpkg -i $DOWNLOAD_FOLDER/*.deb
 
-echo; echo "--> Instalando programas apt"
+echo "\n --> Instalando programas apt"
 for programa in ${PROGRAMAS_APT[@]}; do
     sudo apt install $programa -y
 done
 
-echo; echo "--> Instalando programas snap"
+echo "\n --> Instalando programas snap"
 for programa in ${PROGRAMAS_SNAP[@]}; do
     sudo snap install $programa
 done
 
-echo; echo "--> Instalando programas flatpak"
+echo "\n --> Instalando programas flatpak"
 for programa in ${PROGRAMAS_FLATPAK[@]}; do
     sudo flatpak install $programa
 done
 
-echo; echo "--> Instalando programas curl"
+echo "\n --> Instalando programas curl"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --assume-no
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-echo; echo "--> Instalando tema spaceship zsh"
+echo "\n --> Instalando tema spaceship zsh"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
-echo; echo "--> Atualizando nodejs"
+echo "\n --> Atualizando nodejs"
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
 
-echo; echo "--> Instalando Rust"
+echo "\n --> Instalando Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
-echo; echo "--> Instalando alacritty"
+echo "\n --> Instalando alacritty"
 alacritty
 cargo build --release
 
@@ -166,7 +166,7 @@ cp -f $HOME/config-files/.zshrc $HOME
 cp -f $HOME/config-files/.tmux.conf $HOME
 mv -f $HOME/wallpapers $HOME/Pictures
 
-echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
+echo "\n ---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
 echo "configurar mouse no piper"
 echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"

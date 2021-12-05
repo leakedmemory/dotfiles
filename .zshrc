@@ -113,10 +113,14 @@ fi
 alias update="
     echo 'APT UPDATES'
     sudo apt update -y
+    sudo apt dist-upgrade -y
     echo '\nSNAP UPDATES'
     sudo snap refresh
     echo '\nFLATPAK UPDATES'
     sudo flatpak update
+    echo '\nAUTOCLEAN && AUTOREMOVE'
+    sudo apt autoclean
+    sudo apt autoremove -y
 "
 
 # fpath for zsh integration with alacritty
