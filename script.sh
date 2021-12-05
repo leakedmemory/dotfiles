@@ -155,13 +155,12 @@ cp -f ~/config-files/alacritty.yml ~/.config/alacritty
 cp -f ~/config-files/.zshrc ~/
 cp -f ~/config-files/.tmux.conf ~/
 
-sh -c "sleep 10 && wallch --constant &"
-
 echo "\n---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
 echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
 echo "configurar o coc.nvim"
 echo "configurar o timeshift"
+echo "configurar o wallch"
 echo "setar o zsh como shell padrão"
 echo "setar o alacritty como terminal padrão"
 echo "configurar mouse no piper"
