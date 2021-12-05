@@ -6,6 +6,7 @@ DOWNLOAD_FOLDER="$HOME/Downloads/programs"
 PPA_REPOSITORIOS=(
     ppa:libratbag-piper/piper-libratbag-git
     ppa:xalt7x/chromium-deb-vaapi
+    ppa:neovim-ppa/unstable
 )
 
 GITHUB_REPOSITORIOS=(
@@ -40,18 +41,18 @@ PROGRAMAS_APT=(
     curl
     wallch
     tmux
-)
-
-PROGRAMAS_SNAP=(
-    spotify
-    discord
-    nvim
+    neovim
     flameshot
     htop
     cmake
     ccls
     vlc
     curl
+)
+
+PROGRAMAS_SNAP=(
+    spotify
+    discord
 )
 
 PROGRAMAS_FLATPAK=(
@@ -72,11 +73,13 @@ sudo rm /var/cache/apt/archives/lock
 
 sudo apt update -y
 
+echo "\n--> Adicionando repositórios ppa"
 for repositorio in ${PPA_REPOSITORIOS}; do
     sudo apt-add-repository $repositorio -y
 done
 sudo apt-add-repository universe
 
+echo "\n--> Clonando repositórios do github"
 for repositorio in ${GITHUB_REPOSITORIOS}; do
     git clone $repositorio
 done
@@ -84,38 +87,43 @@ done
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update -y
 
+echo "\n--> Baixando e instalando programas .deb"
 mkdir $DOWNLOAD_FOLDER 
 for programa in ${PROGRAMAS_DEB}; do
     wget -c $programa -p $DOWNLOAD_FOLDER
 done
 sudo dpkg -i $DOWNLOAD_FOLDER/*.deb
 
+echo "\n--> Instalando programas apt"
 for programa in ${PROGRAMAS_APT}; do
     sudo apt install $programa -y
 done
 
+echo "\n--> Instalando programas snap"
 for programa in ${PROGRAMAS_SNAP}; do
     sudo snap install $programa
 done
 
+echo "\n--> Instalando programas flatpak"
 for programa in ${PROGRAMAS_FLATPAK}; do
     sudo flatpak install $programa
 done
 
+echo "\n--> Instalando programas curl"
 for programa in ${PROGRAMAS_CURL}; do
     sh -c $programa
 done
 
-## zsh plugins ##
+echo "\n--> Instalando zsh plugins"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-## Rust ##
+echo "\n--> Instalando Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup override set stable
 rustup update stable
 
-## Alacritty ##
+echo "\n--> Instalando alacritty"
 cd alacritty
 cargo build --release
 
