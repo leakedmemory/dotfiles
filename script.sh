@@ -12,6 +12,9 @@ PPA_REPOSITORIOS=(
 GITHUB_REPOSITORIOS=(
     https://github.com/alacritty/alacritty.git
     https://github.com/Lohan-Yrvine/wallpapers
+    https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 )
 
 PROGRAMAS_DEB=(
@@ -28,6 +31,7 @@ PROGRAMAS_APT=(
     chromium-codecs-ffmpeg
     yarn
     nodejs
+    npm
     zsh
     pkg-config
     libfreetype6-dev
@@ -47,7 +51,6 @@ PROGRAMAS_APT=(
     cmake
     ccls
     vlc
-    curl
 )
 
 PROGRAMAS_SNAP=(
@@ -57,12 +60,6 @@ PROGRAMAS_SNAP=(
 
 PROGRAMAS_FLATPAK=(
 
-)
-
-PROGRAMAS_CURL=(
-    "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -75,14 +72,14 @@ sudo apt update -y
 
 echo ""
 echo "--> Adicionando repositórios ppa"
-for repositorio in ${PPA_REPOSITORIOS}; do
+for repositorio in ${PPA_REPOSITORIOS[@]}; do
     sudo apt-add-repository $repositorio -y
 done
 sudo apt-add-repository universe
 
 echo ""
 echo "--> Clonando repositórios do github"
-for repositorio in ${GITHUB_REPOSITORIOS}; do
+for repositorio in ${GITHUB_REPOSITORIOS[@]}; do
     git clone $repositorio
 done
 
@@ -105,30 +102,36 @@ done
 
 echo ""
 echo "--> Instalando programas snap"
-for programa in ${PROGRAMAS_SNAP}; do
+for programa in ${PROGRAMAS_SNAP[@]}; do
     sudo snap install $programa
 done
 
 echo ""
 echo "--> Instalando programas flatpak"
-for programa in ${PROGRAMAS_FLATPAK}; do
+for programa in ${PROGRAMAS_FLATPAK[@]}; do
     sudo flatpak install $programa
 done
 
 echo ""
 echo "--> Instalando programas curl"
-for programa in ${PROGRAMAS_CURL}; do
-    sh -c $programa
-done
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --assume-no
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo ""
-echo "--> Instalando zsh plugins"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+echo "--> Instalando tema spaceship zsh"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+
+echo ""
+echo "--> Atualizando nodejs"
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
 
 echo ""
 echo "--> Instalando Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
@@ -172,6 +175,7 @@ cp -f ~/config-files/coc-settings.json ~/.config/nvim
 cp -f ~/config-files/alacritty.yml ~/.config/alacritty
 cp -f ~/config-files/.zshrc ~/
 cp -f ~/config-files/.tmux.conf ~/
+mv -f ~/wallpapers ~/Pictures
 
 echo ""
 echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
