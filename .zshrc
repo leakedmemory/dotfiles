@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# command for zsh startup with tmux open
+# comando para o zsh iniciar o tmux aberto 
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
@@ -123,5 +123,5 @@ alias update="
     sudo apt autoremove -y
 "
 
-# fpath for zsh integration with alacritty
+# fpath para integração do zsh com alacritty 
 fpath+=${ZDOTDIR:-~}/.zsh_functions

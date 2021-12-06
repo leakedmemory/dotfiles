@@ -2,8 +2,7 @@
 
 # ----------------------------- VARIÁVEIS ----------------------------- #
 PROGRAMS_PATH="$HOME/Downloads/programs"
-BASH_PATH="$HOME/.bashrc"
-DOT_FILES_REPOSITORY_PATH="$HOME/dot-files"
+CONFIG_FILES_REPOSITORY_PATH="$HOME/config-files"
 DOT_CONFIG_PATH="$HOME/.config"
 WALLPAPERS_REPOSITORY_PATH="$HOME/wallpapers"
 
@@ -41,6 +40,7 @@ APT_PROGRAMS=(
     libxcb-xfixes0-dev
     libxkbcommon-dev
     python3
+    python3-pip
     fonts-firacode
     exuberant-ctags
     timeshift
@@ -49,28 +49,30 @@ APT_PROGRAMS=(
     tmux
     neovim
     flameshot
-    htop
+    bat
     cmake
     ccls
     vlc
     qbittorrent
+    virt-manager
 )
 
 SNAP_PROGRAMS=(
     spotify
     discord
+    glow
 )
 
 FLATPAK_PROGRAMS=(
 
 )
 
-# ----------------------------- REQUISITOS ----------------------------- #
-# Criando aliases
-echo 'alias alacritty="cd $HOME/alacritty' >> $BASH_PATH
-echo 'alias home="cd"' >> $BASH_PATH
-source $BASH_PATH
+CARGO_PACKAGES=(
+    alacritty
+    bottom
+)
 
+# ----------------------------- REQUISITOS ----------------------------- #
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/lib/dpkg/lock
 sudo rm /var/lib/dpkg/lock-frontend
@@ -95,7 +97,8 @@ sudo apt update -y
 echo; echo "--> Baixando e instalando programas .deb"
 mkdir $PROGRAMS_PATH
 for program in ${DEB_PROGRAMS[@]}; do
-    wget -c $program -p $PROGRAMS_PATH done
+    wget -c $program -p $PROGRAMS_PATH
+done
 sudo dpkg -i $PROGRAMS_PATH/*.deb
 
 echo; echo "--> Instalando programas apt"
@@ -135,25 +138,29 @@ source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
-echo; echo "--> Instalando alacritty"
-alacritty  # alias criado anteriormente
-cargo build --release
+echo; echo "--> Instalando pacotes cargo"
+for package in ${CARGO_PACKAGES[@]}; do
+    cargo install $package
+done
+# echo; echo "--> Instalando alacritty"
+# alacritty  # alias criado anteriormente
+# cargo build --release
 
-### Terminfo ###
-sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+# ### Terminfo ###
+# sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
-### Desktop Entry ###
-sudo cp target/release/alacritty /usr/local/bin
-sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-sudo desktop-file-install extra/linux/Alacritty.desktop
-sudo update-desktop-database
+# ### Desktop Entry ###
+# sudo cp target/release/alacritty /usr/local/bin
+# sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+# sudo desktop-file-install extra/linux/Alacritty.desktop
+# sudo update-desktop-database
 
-### Manual Page ###
-sudo mkdir -p /usr/local/share/man/man1
-gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
-gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
+# ### Manual Page ###
+# sudo mkdir -p /usr/local/share/man/man1
+# gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+# gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
 
-home  # alias criado anteriormente
+# home  # alias criado anteriormente
 
 
 # ----------------------------- PÓS-INSTALAÇÃO ----------------------------- #
@@ -170,11 +177,11 @@ git config --global user.email "o.lohan.yrvine@gmail.com"
 
 mkdir $DOT_CONFIG_PATH/nvim
 mkdir $DOT_CONFIG_PATH/alacritty
-cp -f $DOT_FILES_REPOSITORY_PATH/init.vim $DOT_CONFIG_PATH/nvim
-cp -f $DOT_FILES_REPOSITORY_PATH/coc-settings.json $DOT_CONFIG_PATH/nvim
-cp -f $DOT_FILES_REPOSITORY_PATH/alacritty.yml $DOT_CONFIG_PATH/alacritty
-cp -f $DOT_FILES_REPOSITORY_PATH/.zshrc $HOME
-cp -f $DOT_FILES_REPOSITORY_PATH/.tmux.conf $HOME
+cp -f $CONFIG_FILES_REPOSITORY_PATH/init.vim $DOT_CONFIG_PATH/nvim
+cp -f $CONFIG_FILES_REPOSITORY_PATH/coc-settings.json $DOT_CONFIG_PATH/nvim
+cp -f $CONFIG_FILES_REPOSITORY_PATH/alacritty.yml $DOT_CONFIG_PATH/alacritty
+cp -f $CONFIG_FILES_REPOSITORY_PATH/.zshrc $HOME
+cp -f $CONFIG_FILES_REPOSITORY_PATH/.tmux.conf $HOME
 mv -f $WALLPAPERS_REPOSITORY_PATH $HOME/Pictures
 
 echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
