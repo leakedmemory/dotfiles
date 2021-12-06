@@ -2,11 +2,13 @@
 
 # ----------------------------- VARIÁVEIS ----------------------------- #
 DOWNLOAD_FOLDER="$HOME/Downloads/programs"
+BASH_PATH="$HOME/.bashrc"
 
 PPA_REPOSITORIOS=(
     ppa:libratbag-piper/piper-libratbag-git
     ppa:xalt7x/chromium-deb-vaapi
     ppa:neovim-ppa/unstable
+    ppa:qbittorrent-team/qbittorrent-stable
 )
 
 GITHUB_REPOSITORIOS=(
@@ -51,6 +53,7 @@ PROGRAMAS_APT=(
     cmake
     ccls
     vlc
+    qbittorrent
 )
 
 PROGRAMAS_SNAP=(
@@ -63,6 +66,11 @@ PROGRAMAS_FLATPAK=(
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
+# Criando aliases
+echo 'alias alacritty="cd $HOME/alacritty'
+echo 'alias home="cd"'
+source $HOME/.bashrc
+
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/lib/dpkg/lock
 sudo rm /var/lib/dpkg/lock-frontend
@@ -70,13 +78,13 @@ sudo rm /var/cache/apt/archives/lock
 
 sudo apt update -y
 
-echo "\n --> Adicionando repositórios ppa"
+echo; echo "--> Adicionando repositórios ppa"
 for repositorio in ${PPA_REPOSITORIOS[@]}; do
     sudo apt-add-repository $repositorio -y
 done
 sudo apt-add-repository universe
 
-echo "\n --> Clonando repositórios do github"
+echo; echo "--> Clonando repositórios do github"
 for repositorio in ${GITHUB_REPOSITORIOS[@]}; do
     git clone $repositorio
 done
@@ -84,49 +92,49 @@ done
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update -y
 
-echo "\n --> Baixando e instalando programas .deb"
+echo; echo "--> Baixando e instalando programas .deb"
 mkdir $DOWNLOAD_FOLDER 
 for programa in ${PROGRAMAS_DEB}; do
     wget -c $programa -p $DOWNLOAD_FOLDER
 done
 sudo dpkg -i $DOWNLOAD_FOLDER/*.deb
 
-echo "\n --> Instalando programas apt"
+echo; echo "--> Instalando programas apt"
 for programa in ${PROGRAMAS_APT[@]}; do
     sudo apt install $programa -y
 done
 
-echo "\n --> Instalando programas snap"
+echo; echo "--> Instalando programas snap"
 for programa in ${PROGRAMAS_SNAP[@]}; do
     sudo snap install $programa
 done
 
-echo "\n --> Instalando programas flatpak"
+echo; echo "--> Instalando programas flatpak"
 for programa in ${PROGRAMAS_FLATPAK[@]}; do
     sudo flatpak install $programa
 done
 
-echo "\n --> Instalando programas curl"
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --assume-no
+echo; echo "--> Instalando programas curl"
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-echo "\n --> Instalando tema spaceship zsh"
+echo; echo "--> Instalando tema spaceship zsh"
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 
-echo "\n --> Atualizando nodejs"
+echo; echo "--> Atualizando nodejs"
 sudo npm cache clean -f
 sudo npm install -g n
 sudo n stable
 
-echo "\n --> Instalando Rust"
+echo; echo "--> Instalando Rust"
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
-echo "\n --> Instalando alacritty"
-alacritty
+echo; echo "--> Instalando alacritty"
+alacritty  # alias criado anteriormente
 cargo build --release
 
 ### Terminfo ###
@@ -143,7 +151,8 @@ sudo mkdir -p /usr/local/share/man/man1
 gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
 gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
 
-home
+home  # alias criado anteriormente
+
 
 # ----------------------------- PÓS-INSTALAÇÃO ----------------------------- #
 sudo apt update -y
@@ -166,7 +175,7 @@ cp -f $HOME/config-files/.zshrc $HOME
 cp -f $HOME/config-files/.tmux.conf $HOME
 mv -f $HOME/wallpapers $HOME/Pictures
 
-echo "\n ---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
+echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
 echo "configurar mouse no piper"
 echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
