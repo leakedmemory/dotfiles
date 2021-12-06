@@ -1,5 +1,9 @@
 # Instalação
-Basta executar o seguinte comando:
+Primeiro clonar o repositório usando
+```git clone https://github.com/Lohan-Yrvine/config-files```
+
+
+Depois executar o seguinte comando:
 ```bash $HOME/config-files/script.sh```
 
 
