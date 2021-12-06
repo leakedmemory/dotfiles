@@ -1,5 +1,7 @@
 #!/bin/sh
 
+START=`date +%s.%N`
+
 # ----------------------------- VARIÁVEIS ----------------------------- #
 PROGRAMS_PATH="$HOME/Downloads/programs"
 CONFIG_FILES_REPOSITORY_PATH="$HOME/config-files"
@@ -165,6 +167,12 @@ gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-m
 
 home  # alias criado anteriormente
 
+# configurando virt-manager
+sudo groupadd --system libvirt
+sudo usermod -a -G libvirt $(whoami)
+newgrp libvirt
+sudo systemctl restart libvirtd.service
+
 echo; echo "--> Removendo programas"
 for program in ${REMOVE_PROGRAMS[@]}; do
     sudo apt remove $program -y
@@ -192,13 +200,6 @@ cp -f $CONFIG_FILES_REPOSITORY_PATH/.zshrc $HOME
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.tmux.conf $HOME
 mv -f $WALLPAPERS_REPOSITORY_PATH $HOME/Pictures
 
-echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
-echo "configurar mouse no piper"
-echo "setar o flameshot para iniciar com o SO"
-echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
-echo "configurar o wallch"
-echo "setar source-file do tmux com <C-b> :source-file ~/.tmux.conf"
-echo "setar o zsh como shell padrão"
-echo "setar o alacritty como terminal padrão"
-echo "configurar o coc.nvim"
-echo "configurar o timeshift"
+END=`date +%s.%N`
+
+echo; runtime=$(echo "$END - $START" | bc -l)
