@@ -1,7 +1,5 @@
 #!/bin/sh
 
-START=`date +%s.%N`
-
 # ----------------------------- VARIÁVEIS ----------------------------- #
 PROGRAMS_PATH="$HOME/Downloads/programs"
 CONFIG_FILES_REPOSITORY_PATH="$HOME/config-files"
@@ -21,7 +19,7 @@ GITHUB_REPOSITORIES=(
 )
 
 DEB_PROGRAMS=(
-    "https://discord.com/api/download?platform=linux&format=deb"
+
 )
 
 APT_PROGRAMS=(
@@ -61,6 +59,7 @@ APT_PROGRAMS=(
 
 SNAP_PROGRAMS=(
     spotify
+    discord
     glow
 )
 
@@ -179,7 +178,3 @@ cp -f $CONFIG_FILES_REPOSITORY_PATH/alacritty.yml $DOT_CONFIG_PATH/alacritty
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.zshrc $HOME
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.tmux.conf $HOME
 mv -f $WALLPAPERS_REPOSITORY_PATH $HOME/Pictures
-
-END=`date +%s.%N`
-
-echo; runtime=$(echo "$END - $START" | bc -l)
