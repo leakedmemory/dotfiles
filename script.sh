@@ -101,7 +101,7 @@ sudo apt update -y
 echo; echo "--> Baixando e instalando programas .deb"
 mkdir $PROGRAMS_PATH
 for program in ${DEB_PROGRAMS}; do
-    wget -c $program -p $PROGRAMS_PATH
+    wget -c $program -P $PROGRAMS_PATH
 done
 sudo dpkg -i $PROGRAMS_PATH/*.deb
 
