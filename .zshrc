@@ -118,6 +118,8 @@ alias update="
     sudo snap refresh
     echo '\nFLATPAK UPDATES'
     sudo flatpak update
+    echo '\nCARGO UPDATES'
+    cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
     echo '\nAUTOCLEAN && AUTOREMOVE'
     sudo apt autoclean
     sudo apt autoremove -y

@@ -19,7 +19,7 @@ GITHUB_REPOSITORIES=(
 )
 
 DEB_PROGRAMS=(
-
+    "https://discord.com/api/download?platform=linux&format=deb"
 )
 
 APT_PROGRAMS=(
@@ -59,7 +59,6 @@ APT_PROGRAMS=(
 
 SNAP_PROGRAMS=(
     spotify
-    discord
     glow
 )
 
@@ -68,8 +67,11 @@ FLATPAK_PROGRAMS=(
 )
 
 CARGO_PACKAGES=(
-    alacritty
     bottom
+)
+
+REMOVE_PROGRAMS=(
+    nano
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -142,32 +144,38 @@ echo; echo "--> Instalando pacotes cargo"
 for package in ${CARGO_PACKAGES[@]}; do
     cargo install $package
 done
-# echo; echo "--> Instalando alacritty"
-# alacritty  # alias criado anteriormente
-# cargo build --release
 
-# ### Terminfo ###
-# sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+echo; echo "--> Instalando alacritty"
+alacritty  # alias criado anteriormente
+cargo build --release
 
-# ### Desktop Entry ###
-# sudo cp target/release/alacritty /usr/local/bin
-# sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-# sudo desktop-file-install extra/linux/Alacritty.desktop
-# sudo update-desktop-database
+### Terminfo ###
+sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
 
-# ### Manual Page ###
-# sudo mkdir -p /usr/local/share/man/man1
-# gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
-# gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
+### Desktop Entry ###
+sudo cp target/release/alacritty /usr/local/bin
+sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+sudo desktop-file-install extra/linux/Alacritty.desktop
+sudo update-desktop-database
 
-# home  # alias criado anteriormente
+### Manual Page ###
+sudo mkdir -p /usr/local/share/man/man1
+gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
 
+home  # alias criado anteriormente
+
+echo; echo "--> Removendo programas"
+for program in ${REMOVE_PROGRAMS[@]}; do
+    sudo apt remove $program -y
+done
 
 # ----------------------------- PÓS-INSTALAÇÃO ----------------------------- #
 sudo apt update -y
 sudo apt dist-upgrade -y
 sudo snap refresh
 sudo flatpak update
+cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
 sudo apt autoclean
 sudo apt autoremove -y
 sudo dpkg --configure -a
