@@ -100,7 +100,7 @@ sudo apt update -y
 
 echo; echo "--> Baixando e instalando programas .deb"
 mkdir $PROGRAMS_PATH
-for program in ${DEB_PROGRAMS[@]}; do
+for program in ${DEB_PROGRAMS}; do
     wget -c $program -p $PROGRAMS_PATH
 done
 sudo dpkg -i $PROGRAMS_PATH/*.deb
@@ -146,26 +146,6 @@ echo; echo "--> Instalando pacotes cargo"
 for package in ${CARGO_PACKAGES[@]}; do
     cargo install $package
 done
-
-echo; echo "--> Instalando alacritty"
-alacritty  # alias criado anteriormente
-cargo build --release
-
-### Terminfo ###
-sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
-
-### Desktop Entry ###
-sudo cp target/release/alacritty /usr/local/bin
-sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
-sudo desktop-file-install extra/linux/Alacritty.desktop
-sudo update-desktop-database
-
-### Manual Page ###
-sudo mkdir -p /usr/local/share/man/man1
-gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
-gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
-
-home  # alias criado anteriormente
 
 # configurando virt-manager
 sudo groupadd --system libvirt
