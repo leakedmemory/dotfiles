@@ -1,31 +1,58 @@
-:set number
-:set relativenumber
-:set autoindent
-:set tabstop=4
-:set shiftwidth=4
-:set smarttab
-:set softtabstop=4
-:set expandtab
-:set mouse=a
-:set colorcolumn=80,120
-:set incsearch
+set number
+set relativenumber
+set autoindent
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set softtabstop=4
+set expandtab
+set mouse=a
+set colorcolumn=80,120
+set incsearch
+
+autocmd FileType json setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType scss setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin()
 
-Plug 'https://github.com/vim-airline/vim-airline'
-Plug 'https://github.com/preservim/tagbar'
-Plug 'https://github.com/tpope/vim-commentary'
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}
-Plug 'https://github.com/ray-x/lsp_signature.nvim'
-Plug 'https://github.com/jiangmiao/auto-pairs'
-Plug 'https://github.com/christoomey/vim-tmux-navigator'
-Plug 'https://github.com/APZelos/blamer.nvim'
+Plug 'vim-airline/vim-airline'
+Plug 'preservim/tagbar'
+Plug 'tpope/vim-commentary'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'APZelos/blamer.nvim'
+Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
-nmap <F8> :TagbarToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-t> :TagbarToggle<CR>
+
+" Faz com que o gutter fique transparente
+highligh clear SignColumn
+nmap <F7> :GitGutterToggle<CR>
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 500
+let g:blamer_prefix = ' >> '
+nmap <F8> :BlamerToggle<CR>
+
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Troca o nome da variável 
 " Localmente 

@@ -2,6 +2,8 @@
 
 # ----------------------------- VARIÁVEIS ----------------------------- #
 PROGRAMS_PATH="$HOME/Downloads/programs"
+FONTS_PATH="$HOME/Downloads/fonts"
+HOME_FONTS="$HOME/.local/share/fonts"
 CONFIG_FILES_REPOSITORY_PATH="$HOME/config-files"
 DOT_CONFIG_PATH="$HOME/.config"
 WALLPAPERS_REPOSITORY_PATH="$HOME/wallpapers"
@@ -11,6 +13,7 @@ PPA_REPOSITORIES=(
     ppa:xalt7x/chromium-deb-vaapi
     ppa:neovim-ppa/unstable
     ppa:qbittorrent-team/qbittorrent-stable
+    ppa:papirus/papirus
 )
 
 GITHUB_REPOSITORIES=(
@@ -55,6 +58,10 @@ APT_PROGRAMS=(
     vlc
     qbittorrent
     virt-manager
+    gnome-tweaks
+    papirus-icon-theme
+    ps
+    ripgrep
 )
 
 SNAP_PROGRAMS=(
@@ -73,6 +80,11 @@ CARGO_PACKAGES=(
 
 REMOVE_PROGRAMS=(
     nano
+    byobu
+)
+
+FONTS=(
+
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -99,10 +111,21 @@ sudo apt update -y
 
 echo; echo "--> Baixando e instalando programas .deb"
 mkdir $PROGRAMS_PATH
-for program in ${DEB_PROGRAMS}; do
+for program in ${DEB_PROGRAMS[@]}; do
     wget -c $program -P $PROGRAMS_PATH
 done
 sudo dpkg -i $PROGRAMS_PATH/*.deb
+
+echo; echo "--> Baixando e instalando fontes"
+mkdir $FONTS_PATH
+mkdir $HOME_FONTS
+for font in ${FONTS[@]}; do
+    wget -c $font -P $FONTS_PATH
+done
+unzip $FONTS_PATH/*.zip
+tar -xzvf $FONTS_PATH/*tar.gz
+mv $FONTS_PATH/*.ttf $HOME_FONTS
+mv $FONTS_PATH/*.otf $HOME_FONTS
 
 echo; echo "--> Instalando programas apt"
 for program in ${APT_PROGRAMS[@]}; do
@@ -174,6 +197,7 @@ mkdir $DOT_CONFIG_PATH/nvim
 mkdir $DOT_CONFIG_PATH/alacritty
 cp -f $CONFIG_FILES_REPOSITORY_PATH/init.vim $DOT_CONFIG_PATH/nvim
 cp -f $CONFIG_FILES_REPOSITORY_PATH/coc-settings.json $DOT_CONFIG_PATH/nvim
+cp -f $CONFIG_FILES_REPOSITORY_PATH/plugin $DOT_CONFIG_PATH/nvim
 cp -f $CONFIG_FILES_REPOSITORY_PATH/alacritty.yml $DOT_CONFIG_PATH/alacritty
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.zshrc $HOME
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.tmux.conf $HOME

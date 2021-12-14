@@ -124,3 +124,5 @@ alias update="
     sudo apt autoclean
     sudo apt autoremove -y
 "
+
+# fpath para integração do zsh com alacritty
