@@ -105,7 +105,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# comando para o zsh iniciar o tmux aberto 
+# comando para o zsh iniciar o tmux aberto
 if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
   exec tmux
 fi
@@ -118,11 +118,10 @@ alias update="
     sudo snap refresh
     echo '\nFLATPAK UPDATES'
     sudo flatpak update
-    echo '\nCARGO UPDATES'
-    cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
     echo '\nAUTOCLEAN && AUTOREMOVE'
     sudo apt autoclean
     sudo apt autoremove -y
 "
+alias ls="lsd"
 
 # fpath para integração do zsh com alacritty

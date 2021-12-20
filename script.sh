@@ -44,7 +44,6 @@ APT_PROGRAMS=(
     libxkbcommon-dev
     python3
     python3-pip
-    fonts-firacode
     exuberant-ctags
     timeshift
     curl
@@ -68,14 +67,12 @@ SNAP_PROGRAMS=(
     spotify
     discord
     glow
+    bottom
+    lsd
 )
 
 FLATPAK_PROGRAMS=(
 
-)
-
-CARGO_PACKAGES=(
-    bottom
 )
 
 REMOVE_PROGRAMS=(
@@ -84,7 +81,7 @@ REMOVE_PROGRAMS=(
 )
 
 FONTS=(
-
+    https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -143,7 +140,7 @@ for program in ${FLATPAK_PROGRAMS[@]}; do
 done
 
 echo; echo "--> Instalando programas curl"
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended 
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
@@ -164,11 +161,6 @@ source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
-echo; echo "--> Instalando pacotes cargo"
-for package in ${CARGO_PACKAGES[@]}; do
-    cargo install $package
-done
-
 # configurando virt-manager
 sudo groupadd --system libvirt
 sudo usermod -a -G libvirt $(whoami)
@@ -185,13 +177,13 @@ sudo apt update -y
 sudo apt dist-upgrade -y
 sudo snap refresh
 sudo flatpak update
-cargo install $(cargo install --list | egrep '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')
 sudo apt autoclean
 sudo apt autoremove -y
 sudo dpkg --configure -a
 
 git config --global user.name "Lohan Pinheiro"
 git config --global user.email "o.lohan.yrvine@gmail.com"
+git config --global alias.aac "!git add -A && git commit"
 
 mkdir $DOT_CONFIG_PATH/nvim
 mkdir $DOT_CONFIG_PATH/alacritty

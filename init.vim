@@ -1,14 +1,18 @@
+set exrc
 set number
 set relativenumber
-set autoindent
-set tabstop=4
+set guicursor=
+set noerrorbells
+set hidden
+set tabstop=4 softtabstop=4
 set shiftwidth=4
-set smarttab
-set softtabstop=4
+set smartindent
 set expandtab
 set mouse=a
 set colorcolumn=80,120
 set incsearch
+set cursorline
+set scrolloff=8
 
 autocmd FileType json setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
@@ -16,32 +20,49 @@ autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup MY_GROUP
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
 
 call plug#begin()
 
-Plug 'vim-airline/vim-airline'
 Plug 'preservim/tagbar'
-Plug 'tpope/vim-commentary'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'frazrepo/vim-rainbow'
+Plug 'ap/vim-css-color'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'szw/vim-maximizer'
+" Plug 'puremourning/vimspector'
 Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
+
+colorscheme gruvbox
+highlight Normal guibg=none ctermbg=none
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-t> :TagbarToggle<CR>
 
 " Faz com que o gutter fique transparente
-highligh clear SignColumn
+highlight clear SignColumn
 nmap <F7> :GitGutterToggle<CR>
 
 let g:blamer_enabled = 1
@@ -49,13 +70,14 @@ let g:blamer_delay = 500
 let g:blamer_prefix = ' >> '
 nmap <F8> :BlamerToggle<CR>
 
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>tf <cmd>Telescope find_files<CR>
+nnoremap <leader>tg <cmd>Telescope live_grep<CR>
+nnoremap <leader>tb <cmd>Telescope buffers<CR>
+nnoremap <leader>th <cmd>Telescope help_tags<CR>
+nnoremap <leader>ts :lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep for > ") })<CR>
 
-" Troca o nome da variável 
-" Localmente 
+" Troca o nome da variável
+" Localmente
 nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 " Globalmente
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
@@ -63,16 +85,11 @@ nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 " Alt + j/k move a linha atual para cima ou para baixo
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 let g:NERDTreeDirArrowExpandable='+'
 let g:NERDTreeDirArrowCollapsible='~'
-
-" TextEdit might fail if hidden is not set.
-set hidden
 
 " Some servers have issues with backup files, see #649.
 set nobackup
