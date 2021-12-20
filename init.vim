@@ -19,6 +19,7 @@ autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType typescript setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType html setlocal shiftwidth=2 softtabstop=2 tabstop=2
 autocmd FileType scss setlocal shiftwidth=2 softtabstop=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 softtabstop=2 tabstop=2
 
 fun! TrimWhitespace()
     let l:save = winsaveview()
@@ -76,11 +77,60 @@ nnoremap <leader>tb <cmd>Telescope buffers<CR>
 nnoremap <leader>th <cmd>Telescope help_tags<CR>
 nnoremap <leader>ts :lua require("telescope.builtin").grep_string({ search = vim.fn.input("Grep for > ") })<CR>
 
-" Troca o nome da variável
-" Localmente
-nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
-" Globalmente
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+function! AddEmptyLineBelow()
+  call append(line("."), "")
+endfunction
+
+function! AddEmptyLineAbove()
+  let l:scrolloffsave = &scrolloff
+  " Avoid jerky scrolling with ^E at top of window
+  set scrolloff=0
+  call append(line(".") - 1, "")
+  if winline() != winheight(0)
+    silent normal! <C-e>
+  end
+  let &scrolloff = l:scrolloffsave
+endfunction
+
+function! DelEmptyLineBelow()
+  if line(".") == line("$")
+    return
+  end
+  let l:line = getline(line(".") + 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .+1d
+    ''
+    call cursor(line("."), l:colsave)
+  end
+endfunction
+
+function! DelEmptyLineAbove()
+  if line(".") == 1
+    return
+  end
+  let l:line = getline(line(".") - 1)
+  if l:line =~ '^\s*$'
+    let l:colsave = col(".")
+    .-1d
+    silent normal! <C-y>
+    call cursor(line("."), l:colsave)
+  end
+endfunction
+
+nnoremap <leader>db :call DelEmptyLineBelow()<CR>
+nnoremap <leader>da :call DelEmptyLineAbove()<CR>
+nnoremap <leader>ab :call AddEmptyLineBelow()<CR>
+nnoremap <leader>aa :call AddEmptyLineAbove()<CR>
+
+" Function to rename the variable under the cursor
+function! RenameVariable()
+  let word_to_replace = expand("<cword>")
+  let replacement = input("new name: ")
+  execute '%s/\(\W\)' . word_to_replace . '\(\W\)/\1' . replacement . '\2/gc'
+endfunction
+
+nnoremap <leader>rv :call RenameVariable()<CR>
 
 " Alt + j/k move a linha atual para cima ou para baixo
 nnoremap <A-j> :m .+1<CR>==
