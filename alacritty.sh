@@ -25,7 +25,6 @@ echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS --------
 echo "configurar mouse no piper"
 echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
-echo "configurar wallch"
 echo "setar o source-file do tmux com <C-b> :source-file ~/.tmux.conf"
 echo "setar o zsh como shell padrão"
 echo "setar o alacritty como shell padrão"

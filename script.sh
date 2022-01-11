@@ -10,7 +10,6 @@ WALLPAPERS_REPOSITORY_PATH="$HOME/wallpapers"
 
 PPA_REPOSITORIES=(
     ppa:libratbag-piper/piper-libratbag-git
-    ppa:xalt7x/chromium-deb-vaapi
     ppa:neovim-ppa/unstable
     ppa:qbittorrent-team/qbittorrent-stable
     ppa:papirus/papirus
@@ -31,8 +30,6 @@ APT_PROGRAMS=(
     neofetch
     ratbagd
     piper
-    chromium-browser
-    chromium-codecs-ffmpeg
     yarn
     nodejs
     npm
@@ -61,6 +58,7 @@ APT_PROGRAMS=(
     papirus-icon-theme
     ps
     ripgrep
+    apt-transport-https
 )
 
 SNAP_PROGRAMS=(
@@ -124,10 +122,17 @@ tar -xzvf $FONTS_PATH/*tar.gz
 mv $FONTS_PATH/*.ttf $HOME_FONTS
 mv $FONTS_PATH/*.otf $HOME_FONTS
 
+
 echo; echo "--> Instalando programas apt"
 for program in ${APT_PROGRAMS[@]}; do
     sudo apt install $program -y
 done
+
+echo; echo "--> Instalando Brave browser"
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+sudo apt update
+sudo apt install brave-browser
 
 echo; echo "--> Instalando programas snap"
 for program in ${SNAP_PROGRAMS[@]}; do

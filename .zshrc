@@ -122,6 +122,6 @@ alias update="
     sudo apt autoclean
     sudo apt autoremove -y
 "
-alias ls="lsd"
+alias q="tmux kill-session"
 
 # fpath para integração do zsh com alacritty
