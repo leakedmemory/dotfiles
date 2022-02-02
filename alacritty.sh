@@ -22,14 +22,16 @@ mkdir -p ${ZDOTDIR:-~}/.zsh_functions
 echo 'fpath+=${ZDOTDIR:-~}/.zsh_functions' >> ${ZDOTDIR:-~}/.zshrc
 
 echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
-echo "configurar mouse no piper"
-echo "setar o flameshot para iniciar com o SO"
 echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
+echo "setar o flameshot para iniciar com o SO"
 echo "setar o source-file do tmux com <C-b> :source-file ~/.tmux.conf"
 echo "setar o zsh como shell padrão"
 echo "setar o alacritty como shell padrão"
+echo "configurar mouse no piper"
 echo "configurar o coc.nvim"
 echo "configurar o timeshift"
+echo "configurar o brave browser"
 echo "trocar o tema de ícones no gnome-tweaks"
 echo "instalar a extensão clipboard indicator (by tudmotu)"
+echo "remover libreoffice pela store"
 echo "por fim, é recomendado reiniciar a máquina"

@@ -59,27 +59,30 @@ APT_PROGRAMS=(
     ps
     ripgrep
     apt-transport-https
+    brave-browser
+    onlyoffice-desktopeditors
 )
 
 SNAP_PROGRAMS=(
-    spotify
-    discord
     glow
     bottom
     lsd
 )
 
 FLATPAK_PROGRAMS=(
-
+    com.spotify.Client
+    com.discordapp.Discord
+    org.onlyoffice.desktopeditors
 )
 
 REMOVE_PROGRAMS=(
     nano
     byobu
+    firefox
 )
 
 FONTS=(
-    https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+    https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -100,6 +103,10 @@ echo; echo "--> Clonando repositórios do github"
 for repository in ${GITHUB_REPOSITORIES[@]}; do
     git clone $repository
 done
+
+# Brave
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update -y
@@ -128,12 +135,6 @@ for program in ${APT_PROGRAMS[@]}; do
     sudo apt install $program -y
 done
 
-echo; echo "--> Instalando Brave browser"
-sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-sudo apt update
-sudo apt install brave-browser
-
 echo; echo "--> Instalando programas snap"
 for program in ${SNAP_PROGRAMS[@]}; do
     sudo snap install $program
@@ -141,7 +142,7 @@ done
 
 echo; echo "--> Instalando programas flatpak"
 for program in ${FLATPAK_PROGRAMS[@]}; do
-    sudo flatpak install $program
+    sudo flatpak install flathub $program -y
 done
 
 echo; echo "--> Instalando programas curl"
