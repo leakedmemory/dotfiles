@@ -1,5 +1,5 @@
 # Instalação
-Clone o repositório usando
+Na Home, clone o repositório usando
 
 ```zsh
 git clone https://github.com/Lohan-Yrvine/config-files
@@ -7,20 +7,10 @@ git clone https://github.com/Lohan-Yrvine/config-files
 
 Execute o script para fazer as instalações e configurações.
 
-Obs.: a instalação do Rust deve ser aceita.
-
 ```zsh
-bash $HOME/config-files/script.sh
+bash ./config-files/script.sh
 ```
 
-Para finalizar, entre no repositório do Alacritty usando
+Instale o alacritty seguindo as instruções em [https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
 
-```zsh
-cd $HOME/alacritty
-```
-
-e execute o comando
-
-```zsh
-bash $HOME/config-files/alacritty.sh
-```
+Por fim, reinicie a máquina.

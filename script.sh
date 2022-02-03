@@ -11,7 +11,6 @@ WALLPAPERS_REPOSITORY_PATH="$HOME/wallpapers"
 PPA_REPOSITORIES=(
     ppa:libratbag-piper/piper-libratbag-git
     ppa:neovim-ppa/unstable
-    ppa:qbittorrent-team/qbittorrent-stable
     ppa:papirus/papirus
 )
 
@@ -47,20 +46,17 @@ APT_PROGRAMS=(
     wallch
     tmux
     neovim
-    flameshot
     bat
     cmake
     ccls
-    vlc
-    qbittorrent
     virt-manager
     gnome-tweaks
     papirus-icon-theme
-    ps
+    procps
     ripgrep
     apt-transport-https
     brave-browser
-    onlyoffice-desktopeditors
+    gparted
 )
 
 SNAP_PROGRAMS=(
@@ -72,17 +68,18 @@ SNAP_PROGRAMS=(
 FLATPAK_PROGRAMS=(
     com.spotify.Client
     com.discordapp.Discord
+    com.visualstudio.code
     org.onlyoffice.desktopeditors
+    org.gnome.Extensions
+    org.flameshot.Flameshot
+    org.videolan.VLC
+    org.qbittorrent.qBittorrent
 )
 
 REMOVE_PROGRAMS=(
     nano
     byobu
     firefox
-)
-
-FONTS=(
-    https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -108,6 +105,12 @@ done
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
 
+# VSCode
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
+
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update -y
 
@@ -121,14 +124,18 @@ sudo dpkg -i $PROGRAMS_PATH/*.deb
 echo; echo "--> Baixando e instalando fontes"
 mkdir $FONTS_PATH
 mkdir $HOME_FONTS
-for font in ${FONTS[@]}; do
-    wget -c $font -P $FONTS_PATH
-done
-unzip $FONTS_PATH/*.zip
-tar -xzvf $FONTS_PATH/*tar.gz
-mv $FONTS_PATH/*.ttf $HOME_FONTS
-mv $FONTS_PATH/*.otf $HOME_FONTS
 
+# FiraCode
+wget -c https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip -P $FONTS_PATH
+unzip $FONTS_PATH/*.zip
+mv $FONTS_PATH/ttf/*.ttf $HOME_FONTS
+rm ttf
+rm variable_ttf
+rm woff
+rm woff2
+rm fire_code.css
+rm README.txt
+rm specimen.html
 
 echo; echo "--> Instalando programas apt"
 for program in ${APT_PROGRAMS[@]}; do
@@ -141,6 +148,7 @@ for program in ${SNAP_PROGRAMS[@]}; do
 done
 
 echo; echo "--> Instalando programas flatpak"
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 for program in ${FLATPAK_PROGRAMS[@]}; do
     sudo flatpak install flathub $program -y
 done
@@ -195,8 +203,27 @@ mkdir $DOT_CONFIG_PATH/nvim
 mkdir $DOT_CONFIG_PATH/alacritty
 cp -f $CONFIG_FILES_REPOSITORY_PATH/init.vim $DOT_CONFIG_PATH/nvim
 cp -f $CONFIG_FILES_REPOSITORY_PATH/coc-settings.json $DOT_CONFIG_PATH/nvim
-cp -f $CONFIG_FILES_REPOSITORY_PATH/plugin $DOT_CONFIG_PATH/nvim
+cp -r $CONFIG_FILES_REPOSITORY_PATH/plugin $DOT_CONFIG_PATH/nvim
 cp -f $CONFIG_FILES_REPOSITORY_PATH/alacritty.yml $DOT_CONFIG_PATH/alacritty
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.zshrc $HOME
 cp -f $CONFIG_FILES_REPOSITORY_PATH/.tmux.conf $HOME
 mv -f $WALLPAPERS_REPOSITORY_PATH $HOME/Pictures
+
+mkdir -p ${ZDOTDIR:-~}/.zsh_functions
+echo 'fpath+=${ZDOTDIR:-~}/.zsh_functions' >> ${ZDOTDIR:-~}/.zshrc
+
+echo; echo "---------- LISTA DE AJUSTES MANUAIS QUE PRECISAM SER FEITOS ----------"
+echo "mudar o PrtSc para printar com o flameshot por padrão (flameshot gui)"
+echo "setar o source-file do tmux com <C-b> :source-file ~/.tmux.conf"
+echo "setar o zsh como shell padrão usando [chsh -s $(which zsh)]"
+echo "configurar mouse no piper"
+echo "configurar o coc.nvim"
+echo "configurar o timeshift"
+echo "sync brave browser"
+echo "trocar o tema de ícones no gnome-tweaks"
+echo "instalar a extensão clipboard indicator (by tudmotu)"
+echo "remover libreoffice pela store"
+echo "remover gnome extensions padrão do SO"
+echo "remover gnome videos"
+echo "mudar os aplicativos padrão"
+echo;
