@@ -1,5 +1,5 @@
 # Instalação
-Clone o repositório usando
+Na Home, clone o repositório usando
 
 ```zsh
 git clone https://github.com/Lohan-Yrvine/config-files
