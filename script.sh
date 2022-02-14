@@ -79,7 +79,6 @@ FLATPAK_PROGRAMS=(
 REMOVE_PROGRAMS=(
     nano
     byobu
-    firefox
 )
 
 # ----------------------------- REQUISITOS ----------------------------- #
@@ -104,12 +103,6 @@ done
 # Brave
 sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
-
-# VSCode
-wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
 
 # ----------------------------- EXECUÇÃO ----------------------------- #
 sudo apt update -y
@@ -137,7 +130,7 @@ rm fire_code.css
 rm README.txt
 rm specimen.html
 
-echo; echo "--> Instalando programas apt"
+echo; echo "--> Instalando programas dkpg"
 for program in ${APT_PROGRAMS[@]}; do
     sudo apt install $program -y
 done
@@ -175,7 +168,7 @@ source $HOME/.cargo/env
 rustup override set stable
 rustup update stable
 
-# configurando virt-manager
+echo; echo "Configurando virt-manager"
 sudo groupadd --system libvirt
 sudo usermod -a -G libvirt $(whoami)
 newgrp libvirt
