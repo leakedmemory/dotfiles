@@ -27,6 +27,7 @@ APT_PROGRAMS=(
     snapd
     flatpak
     neofetch
+    htop
     ratbagd
     piper
     yarn
@@ -57,6 +58,7 @@ APT_PROGRAMS=(
     apt-transport-https
     brave-browser
     gparted
+    gdb
 )
 
 SNAP_PROGRAMS=(

@@ -111,13 +111,13 @@ if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] &&
 fi
 
 alias update="
-    echo 'APT UPDATES'
+    echo 'DPKG UPDATES'
     sudo apt update -y
     sudo apt dist-upgrade -y
     echo '\nSNAP UPDATES'
     sudo snap refresh
     echo '\nFLATPAK UPDATES'
-    sudo flatpak update
+    sudo flatpak update -y
     echo '\nAUTOCLEAN && AUTOREMOVE'
     sudo apt autoclean
     sudo apt autoremove -y
