@@ -194,6 +194,8 @@ git config --global user.name "Lohan Pinheiro"
 git config --global user.email "o.lohan.yrvine@gmail.com"
 git config --global alias.aac "!git add -A && git commit"
 
+ln -s /usr/bin/batcat ~/.local/bin/bat
+
 mkdir $DOT_CONFIG_PATH/nvim
 mkdir $DOT_CONFIG_PATH/alacritty
 cp -f $CONFIG_FILES_REPOSITORY_PATH/init.vim $DOT_CONFIG_PATH/nvim

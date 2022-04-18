@@ -36,13 +36,12 @@ call plug#begin()
 
 Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'frazrepo/vim-rainbow'
 Plug 'ap/vim-css-color'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'szw/vim-maximizer'
-" Plug 'puremourning/vimspector'
 Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvim-lua/plenary.nvim'
