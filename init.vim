@@ -27,36 +27,43 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
-augroup MY_GROUP
-    autocmd!
-    autocmd BufWritePre * :call TrimWhitespace()
-augroup END
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  " Remove white spaces after last line character.
+  autocmd BufWritePre * :call TrimWhitespace()
+augroup end
 
 call plug#begin()
 
 Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight'
-Plug 'ray-x/lsp_signature.nvim'
+Plug 'rust-lang/rust.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'frazrepo/vim-rainbow'
-Plug 'ap/vim-css-color'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'APZelos/blamer.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-commentary'
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
-Plug 'morhetz/gruvbox'
+Plug 'nikolvs/vim-sunbather'
 
 call plug#end()
 
-colorscheme gruvbox
+colorscheme sunbather
 highlight Normal guibg=none ctermbg=none
+
+" Rust configs
+syntax enable
+filetype plugin indent on
+" let g:rustfmt_autosave = 1
 
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-t> :TagbarToggle<CR>
@@ -67,7 +74,7 @@ nmap <F7> :GitGutterToggle<CR>
 
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
-let g:blamer_prefix = ' >> '
+let g:blamer_prefix = '	 ■ '
 nmap <F8> :BlamerToggle<CR>
 
 nnoremap <leader>tf <cmd>Telescope find_files<CR>
@@ -222,14 +229,6 @@ nmap <leader>rn <Plug>(coc-rename)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
