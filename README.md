@@ -1,16 +1,5 @@
-# Instalação
-Na Home, clone o repositório usando
+# Dotfiles
 
-```zsh
-git clone https://github.com/Lohan-Yrvine/config-files
-```
+My dotfiles for zsh, alacritty and tmux.
 
-Execute o script para fazer as instalações e configurações.
-
-```zsh
-bash ./config-files/script.sh
-```
-
-Instale o alacritty seguindo as instruções em [https://github.com/alacritty/alacritty/blob/master/INSTALL.md](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
-
-Por fim, reinicie a máquina.
+**TODO**: make an install script.
