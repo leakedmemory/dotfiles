@@ -803,15 +803,15 @@ font:
 
 colors:
   primary:
-    background: '0xF3DBE7'
-    foreground: '0xAF5FAF'
+    background: '0xEBDBB2'
+    foreground: '0x3C3836'
 
   normal:
-    black:   '0x140A1D'
-    red:     '0xD9638A'
-    green:   '0x00AE01'
-    yellow:  '0xD65F01'
-    blue:    '0x5F87D7'
-    magenta: '0xB364B0'
-    cyan:    '0x00AEAE'
-    white:   '0xF1C4E0'
+    black:   '0x7C6F64'
+    red:     '0x9D0006'
+    green:   '0x79740E'
+    yellow:  '0xB57614'
+    blue:    '0x076678'
+    magenta: '0x8F3F71'
+    cyan:    '0x427B58'
+    white:   '0xFBF1C7'
