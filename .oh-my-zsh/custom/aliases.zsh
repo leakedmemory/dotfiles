@@ -1,7 +1,7 @@
 alias v="nvim"
 
 alias ls="exa"
-alias ll="exa -l"
+alias ll="exa -l --group-directories-first"
 
 alias cat="batcat"
 
