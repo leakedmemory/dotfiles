@@ -11,7 +11,7 @@ alias aliases="nvim ~/.oh-my-zsh/custom/aliases.zsh && source ~/.oh-my-zsh/custo
 alias ls="exa"
 alias ll="exa -l --group-directories-first"
 
-alias cat="batcat"
+alias cat="batcat --theme=gruvbox-light"
 
 alias mark="grip -b"
 
