@@ -17,6 +17,8 @@ alias cat="batcat --theme=gruvbox-light"
 
 alias mark="grip -b"
 
+alias keymapp="~/Downloads/programs/keymapp"
+
 function upgrade_func() {
   echo "SUDO APT UPDATE"
   sudo apt update
