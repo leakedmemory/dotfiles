@@ -7,13 +7,13 @@ alias v="nvim"
 
 alias aliases="nvim ~/.oh-my-zsh/custom/aliases.zsh && source ~/.oh-my-zsh/custom/aliases.zsh"
 alias zshrc="nvim ~/.zshrc && source ~/.zshrc"
-alias tmuxrc="nvim ~/.tmux.conf && tmux source ~/.tmux.conf"
-alias alacrittyrc="nvim ~/.alacritty.yml"
+alias tmuxrc="nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.conf"
+alias alacrittyrc="nvim ~/.config/alacritty/alacritty.toml"
 
-alias ls="exa"
-alias ll="exa -l --group-directories-first"
+alias ls="eza"
+alias ll="eza -la --group-directories-first"
 
-alias cat="batcat --theme=gruvbox-light"
+alias cat="batcat --theme=ansi"
 
 alias mark="grip -b"
 
@@ -40,6 +40,9 @@ function upgrade_func() {
 
   echo "\nSNAP REFRESH"
   sudo snap refresh
+
+  echo "\nCARGO UPDATE"
+  cargo install-update -a
 }
 alias upgrade=upgrade_func
 

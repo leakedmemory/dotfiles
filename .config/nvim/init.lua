@@ -1,1 +1,1 @@
-require('lohanyrvine')
+require('config')

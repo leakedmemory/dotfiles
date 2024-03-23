@@ -1,0 +1,18 @@
+import = [
+    "~/.config/alacritty/catppuccin-latte.toml",
+]
+
+[env]
+term = "xterm-256color"
+
+[window]
+opacity = 0.9
+padding.x = 5
+padding.y = 5
+
+[font]
+size = 20
+normal.family = "JetBrains Mono Nerd Font"
+bold.family = "JetBrains Mono Nerd Font"
+italic.family = "JetBrains Mono Nerd Font"
+bold_italic.family = "JetBrains Mono Nerd Font"
