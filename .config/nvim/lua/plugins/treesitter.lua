@@ -21,7 +21,7 @@ return {
     highlight = { enable = true },
     indent = { enable = true },
   },
-  config = function(PluginSpec, opts)
+  config = function(_, opts)
     require("nvim-treesitter.configs").setup(opts)
   end,
 }
