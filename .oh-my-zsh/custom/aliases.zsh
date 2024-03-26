@@ -13,7 +13,7 @@ alias alacrittyrc="nvim ~/.config/alacritty/alacritty.toml"
 alias ls="eza"
 alias ll="eza -la --group-directories-first"
 
-alias cat="batcat --theme=ansi"
+alias bat="batcat"
 
 alias mark="grip -b"
 

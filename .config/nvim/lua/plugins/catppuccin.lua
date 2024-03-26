@@ -9,9 +9,8 @@ return {
     integrations = {
       harpoon = true,
       mason = true,
-      telescope = {
-        enabled = true,
-      },
+      telescope = { enabled = true },
+      lsp_trouble = true,
     },
   },
   config = function()
