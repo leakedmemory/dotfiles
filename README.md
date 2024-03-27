@@ -7,13 +7,14 @@ Create a setup script to install and configure everything.
 ## Requirements
 
 - [GNU Stow](https://www.gnu.org/software/stow/)
-- [npm](https://www.npmjs.com/)
-  - [pyright](https://github.com/microsoft/pyright)
+- [pyright](https://github.com/microsoft/pyright)
+  - [Node.js](https://nodejs.org/en/download/package-manager)
 
 Install them using
 
 ```bash
-sudo apt stow npm
+$ sudo apt stow
+$ npm install -g pyright
 ```
 
 ## Creating Symlinks
