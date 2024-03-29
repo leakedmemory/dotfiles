@@ -6,6 +6,8 @@ export VISUAL=nvim
 export EDITOR=$VISUAL
 export XDG_CONFIG_HOME=$HOME/.config
 
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
+
 export PATH=$PATH:$HOME/.local/bin
 
 # added when installing nodejs

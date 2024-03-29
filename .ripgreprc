@@ -1,0 +1,16 @@
+# Allow hidden files on search
+--hidden
+
+# Directories to ignore
+--glob=!.git/*
+--glob=!.idea/*
+--glob=!.vscode/*
+--glob=!obj/*
+--glob=!bin/*
+--glob=!target/*
+--glob=!node_modules/*
+--glob=!dist/*
+--glob=!build/*
+
+# Files to ignore
+--glob=!*.lock

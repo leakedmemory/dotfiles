@@ -9,6 +9,7 @@ alias aliases="nvim ~/.oh-my-zsh/custom/aliases.zsh && source ~/.oh-my-zsh/custo
 alias zshrc="nvim ~/.zshrc && source ~/.zshrc"
 alias tmuxrc="nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.conf"
 alias alacrittyrc="nvim ~/.config/alacritty/alacritty.toml"
+alias rgrc="nvim ~/.ripgreprc"
 
 alias ls="eza"
 alias ll="eza -la --group-directories-first"
