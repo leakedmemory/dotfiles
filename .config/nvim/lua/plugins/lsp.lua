@@ -11,6 +11,9 @@ return {
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "L3MON4D3/LuaSnip",
+
+    -- Neovim Lua API
+    "folke/neodev.nvim",
   },
   name = "lsp",
   config = function()
@@ -69,6 +72,8 @@ return {
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
       }),
     })
+
+    require("neodev").setup({})
 
     local lspconfig = require("lspconfig")
 
