@@ -14,5 +14,18 @@ autocmd("Filetype", {
     "yaml",
     "markdown",
   },
-  command = "setlocal shiftwidth=2 tabstop=2"
+  callback = function()
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.tabstop = 2
+  end
+})
+
+autocmd("Filetype", {
+  pattern = {
+    "asm",
+  },
+  callback = function()
+    vim.opt_local.shiftwidth = 8
+    vim.opt_local.tabstop = 8
+  end
 })
