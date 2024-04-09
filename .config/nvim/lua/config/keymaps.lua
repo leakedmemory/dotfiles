@@ -6,8 +6,14 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 -- mantain selection of text after using < and >
-vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true })
-vim.api.nvim_set_keymap('v', '<', '<gv', { noremap = true })
+vim.api.nvim_set_keymap("v", ">", ">gv", { noremap = true })
+vim.api.nvim_set_keymap("v", "<", "<gv", { noremap = true })
+
+-- move the current line up and down
+vim.api.nvim_set_keymap("n", "<C-k>", ":move .-2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-k>", ":move .-2<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-j>", ":move .+1<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "<C-j>", ":move .+1<CR>", { noremap = true, silent = true })
 
 -- delete to the void
 vim.keymap.set("n", "<leader>d", '"_d')
