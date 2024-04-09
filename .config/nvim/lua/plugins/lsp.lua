@@ -23,7 +23,14 @@ return {
     lsp.on_attach(function(_, bufnr)
       -- availables actions in `:help lsp-zero-keybindings`
       lsp.default_keymaps({ buffer = bufnr })
+
+      -- keymap for importing files
+      vim.api.nvim_buf_set_keymap(
+        bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.code_action()<CR>",
+        { noremap = true, silent = true }
+      )
     end)
+
 
     lsp.format_on_save({
       format_opts = {
@@ -65,7 +72,7 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true
         }),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-y>"] = cmp.mapping.complete(),
         ["<C-f>"] = cmp_action.luasnip_jump_forward(),
         ["<C-b>"] = cmp_action.luasnip_jump_backward(),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
