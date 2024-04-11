@@ -13,6 +13,7 @@ autocmd("Filetype", {
     "lua",
     "yaml",
     "markdown",
+    "json",
   },
   callback = function()
     vim.opt_local.shiftwidth = 2
