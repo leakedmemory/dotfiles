@@ -1,27 +1,29 @@
 # Dotfiles
 
+My dotfile configuration.
+
 ## TODO
 
 Create a setup script to install and configure everything.
 
-## Requirements
+## Dependencies
 
 - [GNU Stow](https://www.gnu.org/software/stow/)
-- [pyright](https://github.com/microsoft/pyright)
-  - [Node.js](https://nodejs.org/en/download/package-manager)
+- [Node.js](https://nodejs.org/en/download/package-manager)
+  - [pyright](https://github.com/microsoft/pyright)
+- [marksman](https://github.com/artempyanykh/marksman)
 
-Install them using
+Install them by using
 
 ```bash
-$ sudo apt stow
+$ sudo apt install stow
 $ npm install -g pyright
+$ sudo snap install marksman
 ```
 
 ## Creating Symlinks
 
-Clone the repository, enter it and run the following to create the links (note
-that this does NOT install anything, it only creates the links to the dotfiles
-in this directory):
+Clone the repository, enter it and run the following to create the links:
 
 ```bash
 stow --adopt .
@@ -33,4 +35,3 @@ make sure to remove the undesired changes and commit or just use `git restore`.
 ## Wallpaper
 
 ![current wallpaper](./wallpaper.jpg)
-

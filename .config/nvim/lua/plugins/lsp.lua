@@ -17,12 +17,12 @@ return {
   },
   name = "lsp",
   config = function()
-    local lsp = require("lsp-zero")
-    lsp.preset("recommended")
+    local lsp_zero = require("lsp-zero")
+    lsp_zero.preset("recommended")
 
-    lsp.on_attach(function(_, bufnr)
+    lsp_zero.on_attach(function(_, bufnr)
       -- availables actions in `:help lsp-zero-keybindings`
-      lsp.default_keymaps({ buffer = bufnr })
+      lsp_zero.default_keymaps({ buffer = bufnr })
 
       -- keymap for importing files
       vim.api.nvim_buf_set_keymap(
@@ -32,7 +32,7 @@ return {
     end)
 
 
-    lsp.format_on_save({
+    lsp_zero.format_on_save({
       format_opts = {
         async = false,
         timeout_ms = 10000,
@@ -42,8 +42,6 @@ return {
         ["vimls"] = { "vim" },
         ["clangd"] = { "c", "cpp", "objc", "objcpp" },
         ["rust_analyzer"] = { "rust" },
-        ["taplo"] = { "toml" },
-        ["yamlls"] = { "yaml" },
         ["pyright"] = { "python" },
       },
     })
@@ -54,17 +52,16 @@ return {
         "lua_ls",
         "vimls",
         "rust_analyzer",
-        "taplo",
-        "yamlls",
         "pyright",
+        "marksman",
       },
       handlers = {
-        lsp.default_setup,
+        lsp_zero.default_setup,
       },
     })
 
     local cmp = require("cmp")
-    local cmp_action = lsp.cmp_action()
+    local cmp_action = lsp_zero.cmp_action()
 
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
