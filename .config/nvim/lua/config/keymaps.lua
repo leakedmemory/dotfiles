@@ -9,9 +9,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
 
--- move the current line up and down
-vim.keymap.set({ "n", "v" }, "<C-k>", ":move .-2<CR>")
-vim.keymap.set({ "n", "v" }, "<C-j>", ":move .+1<CR>")
+-- move lines up and down
+vim.keymap.set("n", "<C-k>", ":move .-2<CR>==")
+vim.keymap.set("n", "<C-j>", ":move .+1<CR>==")
+vim.keymap.set("v", "<C-k>", "dkP`[V`]=gv")
+vim.keymap.set("v", "<C-j>", "dp`[V`]=gv")
 
 -- delete to the void
 vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
