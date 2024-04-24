@@ -10,6 +10,7 @@ alias zshrc="nvim ~/.zshrc && source ~/.zshrc"
 alias tmuxrc="nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.conf"
 alias alacrittyrc="nvim ~/.config/alacritty/alacritty.toml"
 alias rgrc="nvim ~/.ripgreprc"
+alias xlrc="nvim ~/.config/xplr"
 
 alias ls="eza"
 alias ll="eza -la --group-directories-first"
@@ -17,6 +18,14 @@ alias ll="eza -la --group-directories-first"
 alias bat="batcat"
 
 alias mark="grip -b"
+
+function xl_func() {
+  NWD=$(xplr --print-pwd-as-result)
+  if [ -n "$NWD" ]; then
+    cd $NWD
+  fi
+}
+alias xl=xl_func
 
 alias keymapp="~/Downloads/programs/keymapp"
 

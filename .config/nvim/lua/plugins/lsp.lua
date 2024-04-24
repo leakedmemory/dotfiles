@@ -93,7 +93,10 @@ return {
       settings = {
         Lua = {
           diagnostics = {
-            globals = { "vim" },
+            globals = {
+              "vim",
+              "xplr",
+            },
           },
         },
       },
