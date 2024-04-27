@@ -18,7 +18,6 @@ return {
   name = "lsp",
   config = function()
     local lsp_zero = require("lsp-zero")
-    lsp_zero.preset("recommended")
 
     lsp_zero.on_attach(function(_, bufnr)
       -- availables actions in `:help lsp-zero-keybindings`
@@ -42,7 +41,9 @@ return {
         ["vimls"] = { "vim" },
         ["clangd"] = { "c", "cpp", "objc", "objcpp" },
         ["rust_analyzer"] = { "rust" },
-        ["pyright"] = { "python" },
+        ["asm_lsp"] = { "asm", "s", "S" },
+        ["pyright"] = { "python", "py", "pyc" },
+        ["marksman"] = { "markdown", "md" },
       },
     })
 
@@ -52,6 +53,7 @@ return {
         "lua_ls",
         "vimls",
         "rust_analyzer",
+        "asm_lsp",
         "pyright",
         "marksman",
       },

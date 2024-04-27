@@ -5,6 +5,11 @@ vim.keymap.set("n", "<leader>re", vim.cmd.Ex)
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- toggle fold, open all folds, close all folds
+vim.keymap.set({ "n", "v" }, "<leader>ft", "za")
+vim.keymap.set({ "n", "v" }, "<leader>fu", "zR")
+vim.keymap.set({ "n", "v" }, "<leader>fa", "zM")
+
 -- mantain selection of text after using < and >
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("v", "<", "<gv")
