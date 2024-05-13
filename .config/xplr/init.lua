@@ -1,4 +1,4 @@
-version = "0.21.7"
+version = "0.21.8"
 
 xplr.config.general.show_hidden = true
 
