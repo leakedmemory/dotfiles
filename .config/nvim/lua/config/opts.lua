@@ -1,35 +1,38 @@
-vim.opt.guicursor = ''
+local opt = vim.opt
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
+opt.guicursor = ""
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+opt.nu = true
+opt.relativenumber = true
 
-vim.opt.smartindent = true
+opt.tabstop = 4
+opt.softtabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99
+opt.smartindent = true
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.smartcase = true
+opt.ignorecase = true
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldlevel = 99
 
-vim.opt.termguicolors = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "no"
-vim.opt.isfname:append("@-@")
+opt.hlsearch = false
+opt.incsearch = true
 
-vim.opt.updatetime = 50
+opt.termguicolors = true
 
-vim.opt.colorcolumn = "80,100,120"
+opt.scrolloff = 8
+opt.signcolumn = "no"
+opt.isfname:append("@-@")
 
-vim.opt.cursorline = true
+opt.updatetime = 50
+
+opt.colorcolumn = "80,100,120"

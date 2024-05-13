@@ -1,30 +1,32 @@
+local set = vim.keymap.set
+
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>re", vim.cmd.Ex)
+set("n", "<leader>re", vim.cmd.Ex)
 
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+set("n", "<C-d>", "<C-d>zz")
+set("n", "<C-u>", "<C-u>zz")
 
 -- toggle fold, open all folds, close all folds
-vim.keymap.set({ "n", "v" }, "<leader>ft", "za")
-vim.keymap.set({ "n", "v" }, "<leader>fu", "zR")
-vim.keymap.set({ "n", "v" }, "<leader>fa", "zM")
+set({ "n", "v" }, "<leader>ft", "za")
+set({ "n", "v" }, "<leader>fu", "zR")
+set({ "n", "v" }, "<leader>fa", "zM")
 
 -- mantain selection of text after using < and >
-vim.keymap.set("v", ">", ">gv")
-vim.keymap.set("v", "<", "<gv")
+set("v", ">", ">gv")
+set("v", "<", "<gv")
 
 -- move lines up and down
-vim.keymap.set("n", "<C-k>", ":move .-2<CR>==")
-vim.keymap.set("n", "<C-j>", ":move .+1<CR>==")
-vim.keymap.set("v", "<C-k>", "dkP`[V`]=gv")
-vim.keymap.set("v", "<C-j>", "dp`[V`]=gv")
+set("n", "<C-k>", ":move .-2<CR>==")
+set("n", "<C-j>", ":move .+1<CR>==")
+set("v", "<C-k>", "dkP`[V`]=gv")
+set("v", "<C-j>", "dp`[V`]=gv")
 
 -- delete to the void
-vim.keymap.set({ "n", "v" }, "<leader>d", '"_d')
+set({ "n", "v" }, "<leader>d", '"_d')
 -- delete to the void and paste
-vim.keymap.set("x", "<leader>p", '"_dP')
+set("x", "<leader>p", '"_dP')
 
 -- copy to the SO clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
+set({ "n", "v" }, "<leader>y", '"+y')
+set("n", "<leader>Y", '"+Y')
