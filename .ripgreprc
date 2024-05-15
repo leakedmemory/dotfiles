@@ -14,3 +14,5 @@
 
 # Files to ignore
 --glob=!*.lock
+--glob=!*.o
+--glob=!*.gcno
