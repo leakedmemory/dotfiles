@@ -1,7 +1,5 @@
 local set = vim.keymap.set
 
-set("n", "<leader>re", vim.cmd.Ex)
-
 set("n", "<C-d>", "<C-d>zz")
 set("n", "<C-u>", "<C-u>zz")
 
