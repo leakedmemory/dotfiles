@@ -1,5 +1,5 @@
 if [ -f $HOME/.zsh/env_exports.zsh ]; then
-    source ~/.zsh/zshalias
+    source $HOME/.zsh/env_exports.zsh
 fi
 source $HOME/.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
 
