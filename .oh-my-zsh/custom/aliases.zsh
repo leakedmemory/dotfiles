@@ -3,7 +3,15 @@ function nvrc_func() {
   cd ~/.config/nvim && nvim . && cd $SAVE_PWD
 }
 alias nvrc=nvrc_func
-alias v="nvim"
+
+function v_func() {
+  if [[ ! -n $1 ]]; then
+    nvim .
+  else
+    nvim $1
+  fi
+}
+alias v=v_func
 
 alias aliases="nvim ~/.oh-my-zsh/custom/aliases.zsh && source ~/.oh-my-zsh/custom/aliases.zsh"
 alias zshrc="nvim ~/.zshrc && source ~/.zshrc"
@@ -46,5 +54,3 @@ function upgrade_func() {
   cargo install-update -a
 }
 alias upgrade=upgrade_func
-
-alias cubemx="/usr/local/STMicroelectronics/STM32Cube/STM32CubeMX/STM32CubeMX"
