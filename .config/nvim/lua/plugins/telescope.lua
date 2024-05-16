@@ -11,6 +11,7 @@ return {
     -- <https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file>
     vim.keymap.set("n", "<leader>tn", builtin.find_files, {})
 
+    vim.keymap.set("v", "<leader>tl", builtin.grep_string, {})
     vim.keymap.set("n", "<leader>tl", function()
       builtin.grep_string({ search = vim.fn.input("Grep > ") })
     end)
