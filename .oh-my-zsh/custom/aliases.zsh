@@ -19,8 +19,8 @@ alias tmuxrc="nvim ~/.config/tmux/tmux.conf && tmux source ~/.config/tmux/tmux.c
 alias alacrittyrc="nvim ~/.config/alacritty/alacritty.toml"
 alias rgrc="nvim ~/.ripgreprc"
 
-alias ls="eza"
-alias ll="eza -la --group-directories-first"
+alias ls="eza --icons"
+alias ll="eza -la --group-directories-first --icons"
 
 alias bat="batcat"
 
