@@ -97,7 +97,6 @@ return {
           diagnostics = {
             globals = {
               "vim",
-              "xplr",
             },
           },
         },
