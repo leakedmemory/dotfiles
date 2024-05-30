@@ -1,5 +1,5 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
-  name = "ibl",
+  name = "ibl.nvim",
   opts = {},
 }

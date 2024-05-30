@@ -15,7 +15,6 @@ return {
     -- Neovim Lua API
     "folke/neodev.nvim",
   },
-  name = "lsp",
   config = function()
     local lsp_zero = require("lsp-zero")
 
@@ -24,8 +23,8 @@ return {
       lsp_zero.default_keymaps({ buffer = bufnr })
 
       -- keymap for importing files
-      vim.api.nvim_buf_set_keymap(
-        bufnr, "n", "<leader>i", "<cmd>lua vim.lsp.buf.code_action()<CR>",
+      vim.keymap.set(
+        "n", "<LEADER>i", "<CMD>lua vim.lsp.buf.code_action()<CR>",
         { noremap = true, silent = true }
       )
     end)

@@ -1,7 +1,13 @@
 return {
   "stevearc/oil.nvim",
-  name = "oil",
+  lazy = false,
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  keys = {
+    {
+      "<LEADER>re",
+      "<CMD>Oil<CR>",
+    },
+  },
   opts = {
     view_options = {
       show_hidden = true,
@@ -9,7 +15,5 @@ return {
   },
   config = function(_, opts)
     require("oil").setup(opts)
-
-    vim.keymap.set("n", "<leader>re", "<CMD>Oil<CR>", { desc = "open parent dir" })
   end
 }
