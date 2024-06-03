@@ -13,7 +13,7 @@ return {
     "L3MON4D3/LuaSnip",
 
     -- Neovim Lua API
-    "folke/neodev.nvim",
+    "folke/lazydev.nvim",
   },
   config = function()
     local lsp_zero = require("lsp-zero")
@@ -21,12 +21,6 @@ return {
     lsp_zero.on_attach(function(_, bufnr)
       -- availables actions in `:help lsp-zero-keybindings`
       lsp_zero.default_keymaps({ buffer = bufnr })
-
-      -- keymap for importing files
-      vim.keymap.set(
-        "n", "<LEADER>i", "<CMD>lua vim.lsp.buf.code_action()<CR>",
-        { noremap = true, silent = true }
-      )
     end)
 
 
@@ -78,7 +72,7 @@ return {
       }),
     })
 
-    require("neodev").setup({})
+    require("lazydev").setup({})
 
     local lspconfig = require("lspconfig")
 
