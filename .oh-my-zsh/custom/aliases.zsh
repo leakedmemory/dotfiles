@@ -20,7 +20,7 @@ alias alacrittyrc="nvim ~/.config/alacritty/alacritty.toml"
 alias rgrc="nvim ~/.ripgreprc"
 
 alias ls="eza --icons"
-alias ll="eza -la --group-directories-first --icons"
+alias ll="eza -la --group-directories-first --icons --git"
 
 alias bat="batcat"
 
