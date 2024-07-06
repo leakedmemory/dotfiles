@@ -5,7 +5,7 @@ set("n", "x", '"_x')
 set("n", "U", "<C-r>")
 
 -- open link under cursor on browser
-set("n", "gx", ":sil !open <cWORD><CR>", { silent = true })
+set("n", "gx", "<CMD>sil !open <cWORD><CR>", { silent = true })
 
 -- center buffer while navigating
 set("n", "<C-d>", "<C-d>zz")
@@ -29,8 +29,8 @@ set("v", ">", ">gv")
 set("v", "<", "<gv")
 
 -- move lines up and down
-set("n", "<C-k>", ":move .-2<CR>==")
-set("n", "<C-j>", ":move .+1<CR>==")
+set("n", "<C-k>", "<CMD>move .-2<CR>==")
+set("n", "<C-j>", "<CMD>move .+1<CR>==")
 set("v", "<C-k>", "dkP`[V`]=gv")
 set("v", "<C-j>", "dp`[V`]=gv")
 

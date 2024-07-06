@@ -35,8 +35,8 @@ return {
         ["clangd"] = { "c", "cpp", "objc", "objcpp" },
         ["rust_analyzer"] = { "rust" },
         ["asm_lsp"] = { "asm", "s", "S" },
-        ["pyright"] = { "python", "py", "pyc" },
-        ["marksman"] = { "markdown", "md" },
+        ["pyright"] = { "py" },
+        ["texlab"] = { "tex", "bib" },
       },
     })
 
@@ -49,6 +49,7 @@ return {
         "asm_lsp",
         "pyright",
         "marksman",
+        "texlab",
       },
       handlers = {
         lsp_zero.default_setup,

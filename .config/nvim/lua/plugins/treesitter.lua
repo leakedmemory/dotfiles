@@ -17,6 +17,7 @@ return {
       "bash",
       "markdown",
       "markdown_inline",
+      "latex",
     },
     highlight = { enable = true },
     indent = { enable = true },
