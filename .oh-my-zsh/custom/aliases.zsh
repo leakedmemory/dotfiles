@@ -24,7 +24,7 @@ alias ll="eza -la --group-directories-first --icons --git"
 
 alias bat="batcat"
 
-alias mark="grip -b"
+alias mark="grip -b --quiet"
 
 alias keymapp="~/Downloads/programs/keymapp"
 
