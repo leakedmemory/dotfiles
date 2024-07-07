@@ -6,19 +6,24 @@ My dotfile configuration.
 
 Create a setup script to install and configure everything.
 
-## Dependencies
+## (Not all) Dependencies
 
-- [GNU Stow](https://www.gnu.org/software/stow/)
-- [Node.js](https://nodejs.org/en/download/package-manager)
-  - [pyright](https://github.com/microsoft/pyright)
-- [marksman](https://github.com/artempyanykh/marksman)
+- [GNU Stow](https://www.gnu.org/software/stow)
+- [Latexmk](https://mg.readthedocs.io/latexmk.html)
+- [Pyright](https://microsoft.github.io/pyright/#/)
+- [Marksman](https://github.com/artempyanykh/marksman)
+- [Black](https://black.readthedocs.io/en/stable/index.html)
+- [Tree-sitter](https://tree-sitter.github.io/tree-sitter) (need because of
+  latex)
 
 Install them by using
 
 ```bash
-$ sudo apt install stow
+$ sudo apt install stow latexmk
 $ npm install -g pyright
 $ sudo snap install marksman
+$ pip install black
+$ cargo install tree-sitter-cli
 ```
 
 ## Creating Symlinks
