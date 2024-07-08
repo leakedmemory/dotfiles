@@ -11,16 +11,11 @@ return {
       continuous = 1,
       executable = "latexmk",
       options = {
-        "-pdf",
+        "-pdfxe",
         "-interaction=nonstopmode",
         "-synctex=1",
         "-outdir=build",
       },
     }
-
-    vim.api.nvim_create_autocmd("BufWritePost", {
-      pattern = { "*.tex", "*.bib" },
-      command = "VimtexCompile",
-    })
   end
 }
