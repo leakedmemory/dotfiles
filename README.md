@@ -4,7 +4,10 @@ My dotfile configuration.
 
 ## TODO
 
-Create a setup script to install and configure everything.
+- Create a setup script to install and configure everything.
+- Move to Kitty
+- Move to Zinit [vid1](https://www.youtube.com/watch?v=ud7YxC33Z3w)
+  [vid2](https://www.youtube.com/watch?v=9U8LCjuQzdc)
 
 ## (Not all) Dependencies
 

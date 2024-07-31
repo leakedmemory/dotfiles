@@ -5,5 +5,20 @@ augroup("CustomGroup", { clear = true })
 
 autocmd("BufWritePre", {
   pattern = "*",
-  command = ":%s/\\s\\+$//e"
+  command = "%s/\\s\\+$//e"
+})
+
+autocmd("BufWritePost", {
+  pattern = {
+    "*.html",
+    "*.css",
+    "*.js",
+    "*.jsx",
+    "*.ts",
+    "*.tsx",
+    "*.json",
+    "*.yaml",
+    "*.md"
+  },
+  command = "silent:!prettier --write %"
 })

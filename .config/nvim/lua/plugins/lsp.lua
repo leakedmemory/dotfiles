@@ -2,17 +2,18 @@ return {
   "VonHeikemen/lsp-zero.nvim",
   branch = "v3.x",
   dependencies = {
-    -- LSP Support
+    -- lsp support
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
 
-    -- Autocompletion
+    -- autocompletion
     "hrsh7th/nvim-cmp",
     "hrsh7th/cmp-nvim-lsp",
     "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
 
-    -- Neovim Lua API
+    -- neovim lua api
     "folke/lazydev.nvim",
   },
   config = function()
@@ -30,12 +31,21 @@ return {
         timeout_ms = 10000,
       },
       servers = {
-        ["lua_ls"] = { "lua" },
-        ["vimls"] = { "vim" },
+        -- programming languages
         ["clangd"] = { "c", "cpp", "objc", "objcpp" },
         ["rust_analyzer"] = { "rust" },
         ["asm_lsp"] = { "asm", "s", "S" },
+
+        -- scripting languages
+        ["lua_ls"] = { "lua" },
         ["pyright"] = { "py" },
+        ["bashls"] = { "sh" },
+
+        -- data serialization
+        ["taplo"] = { "toml" },
+
+        --other
+        ["cmake"] = { "cmake" },
         ["texlab"] = { "tex", "bib" },
       },
     })
@@ -43,34 +53,89 @@ return {
     require("mason").setup({})
     require("mason-lspconfig").setup({
       ensure_installed = {
-        "lua_ls",
-        "vimls",
+        -- programming languages
+        "clangd",
         "rust_analyzer",
         "asm_lsp",
+        "tsserver",
+
+        -- scripting languages
+        "lua_ls",
         "pyright",
+        "bashls",
+
+        -- markup languages
+        "html",
+        "cssls",
         "marksman",
+
+        -- data serialization
+        "taplo",
+        "jsonls",
+        "yamlls",
+
+        -- other
+        "cmake",
         "texlab",
+        "eslint",
       },
       handlers = {
         lsp_zero.default_setup,
       },
     })
 
-    local cmp = require("cmp")
-    local cmp_action = lsp_zero.cmp_action()
+    local luasnip = require("luasnip")
+    luasnip.add_snippets("html", {
+      luasnip.snippet("html5", {
+        luasnip.text_node("<!doctype html>"),
+        luasnip.text_node({ "", "<html lang=\"pt-BR\">" }),
+        luasnip.text_node({ "", "  <head>" }),
+        luasnip.text_node({ "", "    <meta charset=\"UTF-8\" />" }),
+        luasnip.text_node({ "", "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" }),
+        luasnip.text_node({ "", "    <title>Document</title>" }),
+        luasnip.text_node({ "", "  </head>" }),
+        luasnip.text_node({ "", "  <body>" }),
+        luasnip.text_node({ "", "    " }),
+        luasnip.insert_node(1),
+        luasnip.text_node({ "", "  </body>" }),
+        luasnip.text_node({ "", "</html>" }),
+      }),
+    })
 
+    local cmp = require("cmp")
     cmp.setup({
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
       mapping = cmp.mapping.preset.insert({
         ["<Tab>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true
         }),
         ["<C-y>"] = cmp.mapping.complete(),
-        ["<C-f>"] = cmp_action.luasnip_jump_forward(),
-        ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+        ["<C-f>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-b>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-d>"] = cmp.mapping.scroll_docs(4),
       }),
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+      },
     })
 
     require("lazydev").setup({})
@@ -80,14 +145,16 @@ return {
     lspconfig.opts = {
       servers = {
         clangd = {
-          mason = false,
+          cmd = {
+            "clangd",
+            "--background-index",
+            "--suggest-missing-includes",
+            "--clang-tidy",
+            "--header-insertion=iwyu"
+          },
         },
-      },
-    }
 
-    lspconfig.lua_ls.setup({
-      settings = {
-        Lua = {
+        lua_ls = {
           diagnostics = {
             globals = {
               "vim",
@@ -95,16 +162,22 @@ return {
           },
         },
       },
-    })
 
-    lspconfig.clangd.setup({
-      cmd = {
-        "clangd-18",
-        "--background-index",
-        "--suggest-missing-includes",
-        "--clang-tidy",
-        "--header-insertion=iwyu"
+      eslint = {
+        settings = {
+          format = { enable = false },
+        },
+        on_attach = function(client, bufnr)
+          if client.resolved_capabilities.document_diagnostics then
+            vim.api.nvim_create_autocmd("BufWritePost", {
+              buffer = bufnr,
+              callback = function()
+                vim.lsp.buf.lint()
+              end,
+            })
+          end
+        end,
       },
-    })
+    }
   end,
 }

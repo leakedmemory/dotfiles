@@ -1,6 +1,7 @@
 local opt = vim.opt
 
 opt.guicursor = ""
+opt.termguicolors = true
 
 opt.scrolloff = 8
 

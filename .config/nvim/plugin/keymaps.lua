@@ -41,3 +41,6 @@ set("x", "<LEADER>p", '"_dP')
 
 -- copy to the OS's clipboard
 set({ "n", "v" }, "<LEADER>y", '"+y')
+
+-- global replace of word
+set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

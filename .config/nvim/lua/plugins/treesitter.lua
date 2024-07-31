@@ -4,20 +4,34 @@ return {
   build = ":TSUpdate",
   opts = {
     ensure_installed = {
-      "lua",
-      "vim",
-      "vimdoc",
+      -- programming languages
       "c",
-      "cpp",
-      "make",
       "rust",
-      "toml",
-      "yaml",
+      "asm",
+      "javascript",
+      "jsdoc",
+
+      -- scripting languages
+      "lua",
       "python",
       "bash",
+
+      -- markup languages
+      "html",
+      "css",
       "markdown",
       "markdown_inline",
+
+      -- data serialization
+      "toml",
+      "json",
+      "jsonc",
+      "yaml",
+
+      -- other
+      "cmake",
       "latex",
+      "gitignore",
     },
     highlight = { enable = true },
     indent = { enable = true },
