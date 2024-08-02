@@ -10,6 +10,7 @@ return {
       "asm",
       "javascript",
       "jsdoc",
+      "go",
 
       -- scripting languages
       "lua",

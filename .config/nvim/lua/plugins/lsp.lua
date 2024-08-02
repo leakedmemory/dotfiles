@@ -34,18 +34,15 @@ return {
         -- programming languages
         ["clangd"] = { "c", "cpp", "objc", "objcpp" },
         ["rust_analyzer"] = { "rust" },
-        ["asm_lsp"] = { "asm", "s", "S" },
+        ["gopls"] = { "go" },
 
         -- scripting languages
         ["lua_ls"] = { "lua" },
-        ["pyright"] = { "py" },
-        ["bashls"] = { "sh" },
 
         -- data serialization
         ["taplo"] = { "toml" },
 
         --other
-        ["cmake"] = { "cmake" },
         ["texlab"] = { "tex", "bib" },
       },
     })
@@ -58,6 +55,7 @@ return {
         "rust_analyzer",
         "asm_lsp",
         "tsserver",
+        "gopls",
 
         -- scripting languages
         "lua_ls",
@@ -156,28 +154,19 @@ return {
 
         lua_ls = {
           diagnostics = {
-            globals = {
-              "vim",
-            },
+            globals = { "vim" },
           },
         },
       },
-
-      eslint = {
-        settings = {
-          format = { enable = false },
-        },
-        on_attach = function(client, bufnr)
-          if client.resolved_capabilities.document_diagnostics then
-            vim.api.nvim_create_autocmd("BufWritePost", {
-              buffer = bufnr,
-              callback = function()
-                vim.lsp.buf.lint()
-              end,
-            })
-          end
-        end,
-      },
     }
+
+    -- use only eslint's linting
+    lspconfig.tsserver.setup({
+      init_options = {
+        preferences = {
+          disableSuggestions = true,
+        },
+      },
+    })
   end,
 }

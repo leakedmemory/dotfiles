@@ -3,7 +3,9 @@ return {
   name = "colorizer.nvim",
   config = function()
     require("colorizer").setup({
-      "*",
+      "html",
+      "css",
+      "markdown",
     }, {
       names = false,
     })

@@ -5,6 +5,7 @@ return {
   opts = {
     extra_groups = {
       "CustomGroup",
+      "NormalFloat", -- floating panels
     },
   },
 }
