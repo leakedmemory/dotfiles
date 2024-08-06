@@ -23,6 +23,7 @@ alias ll="eza -la --group-directories-first --icons --git"
 alias tm="tmux attach -t TMUX || tmux new -s TMUX"
 
 alias mark="grip -b --quiet"
+alias fetch="fastfetch"
 
 function upgrade_func() {
   echo "SUDO APT UPDATE"

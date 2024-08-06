@@ -22,7 +22,7 @@ full_upgrade_and_clean() {
 
 upgrade
 
-PPAS=(ppa:neovim-ppa/unstable ppa:papirus/papirus)
+PPAS=(ppa:neovim-ppa/unstable ppa:papirus/papirus ppa:zhangsongcui3371/fastfetch)
 for ppa in ${PPAS[@]}; do
     sudo add-apt-repository ${ppa} -y
 done
@@ -33,6 +33,7 @@ PKGS=(
     neovim papirus-icon-theme clangd clang-format gdb tmux zsh kitty stow cmake
     flameshot latexmk biber zathura steam curl python3-pip libssl-dev snapd
     wget gnupg lsb-release apt-transport-https ca-certificates shfmt xsel
+    fastfetch
     python$(python3 --version | awk "{print $2}" | cut -d"." -f1-2)-venv
 )
 
