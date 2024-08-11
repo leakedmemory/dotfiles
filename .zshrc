@@ -84,6 +84,5 @@ exit_or_kill_tmux() {
 zle -N exit_or_kill_tmux
 bindkey "^D" exit_or_kill_tmux
 
-CATPOSH="https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/catppuccin_latte.omp.json"
-eval "$(oh-my-posh init zsh --config $CATPOSH)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.omp.toml)"
 eval "$(zoxide init --cmd cd zsh)"

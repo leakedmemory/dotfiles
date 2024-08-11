@@ -1,0 +1,103 @@
+"$schema" = "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json"
+version = 2
+final_space = true
+auto_upgrade = true
+disable_notice = true
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+type = "os"
+style = "plain"
+background = "transparent"
+foreground = "p:os"
+template = "{{ .Icon }} "
+
+[[blocks.segments]]
+type = "session"
+style = "plain"
+background = "transparent"
+foreground = "p:blue"
+template = "{{ .UserName }}@{{ .HostName }} "
+
+[[blocks.segments]]
+type = "path"
+style = "plain"
+background = "transparent"
+foreground = "p:pink"
+template = "{{ .Path }} "
+
+[blocks.segments.properties]
+home_icon = "~"
+style = "folder"
+
+[[blocks.segments]]
+type = "git"
+style = "plain"
+background = "transparent"
+foreground = "p:lavender"
+template = "{{ .HEAD }}"
+
+[blocks.segments.properties]
+branch_icon = "\ue725 "
+cherry_pick_icon = "\ue29b "
+commit_icon = "\uf417 "
+fetch_status = false
+fetch_upstream_icon = false
+merge_icon = "\ue727 "
+no_commits_icon = "\uf0c3 "
+rebase_icon = "\ue728 "
+revert_icon = "\uf0e2 "
+tag_icon = "\uf412 "
+
+[[blocks]]
+type = "rprompt"
+overflow = "hidden"
+
+[[blocks.segments]]
+type = "executiontime"
+style = "plain"
+background = "transparent"
+foreground = "p:yellow"
+template = "{{ div .Ms 1000 }}s"
+
+[blocks.segments.properties]
+threshold = 5000
+
+[[blocks]]
+type = "prompt"
+alignment = "left"
+newline = true
+
+[[blocks.segments]]
+type = "text"
+style = "plain"
+background = "transparent"
+foreground_templates = [
+    "{{ if eq .Code 0 }}p:closer{{ else }}p:maroon{{ end }}",
+]
+template = "\uf105"
+
+[secondary_prompt]
+background = "transparent"
+foreground = "p:closer"
+template = "\uf105\uf105 "
+
+[transient_prompt]
+background = "transparent"
+foreground_templates = [
+    "{{ if eq .Code 0 }}p:closer{{ else }}p:maroon{{ end }}",
+]
+template = "\uf105 "
+
+[palette]
+blue = "#1e66f5"
+closer = "p:os"
+lavender = "#7287fd"
+maroon = "#e64553"
+os = "#acb0be"
+pink = "#ea76cb"
+yellow = "#df8e1d"

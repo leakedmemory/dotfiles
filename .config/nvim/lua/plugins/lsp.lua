@@ -43,6 +43,7 @@ return {
         ["taplo"] = { "toml" },
 
         --other
+        ["neocmake"] = { "CMakeLists.txt", "cmake" },
         ["texlab"] = { "tex", "bib" },
       },
     })
@@ -64,6 +65,7 @@ return {
 
         -- markup languages
         "html",
+        "htmx",
         "cssls",
         "marksman",
 
@@ -73,7 +75,7 @@ return {
         "yamlls",
 
         -- other
-        "cmake",
+        "neocmake",
         "texlab",
         "eslint",
       },

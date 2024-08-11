@@ -18,6 +18,7 @@ alias tmuxrc="nvim $HOME/.config/tmux/tmux.conf && tmux source $HOME/.config/tmu
 alias kittyrc="nvim $HOME/.config/kitty/kitty.conf"
 alias rgrc="nvim $HOME/.ripgreprc"
 
+alias ..="cd .."
 alias ls="eza --icons"
 alias ll="eza -la --group-directories-first --icons --git"
 alias tm="tmux attach -t TMUX || tmux new -s TMUX"
