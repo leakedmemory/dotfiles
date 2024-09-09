@@ -58,3 +58,8 @@ autocmd("BufWritePost", {
     end
   end,
 })
+
+autocmd("BufWinEnter", {
+  pattern = "*.html",
+  command = "setfiletype html",
+})

@@ -19,6 +19,7 @@ return {
 
       -- markup languages
       "html",
+      "templ",
       "css",
       "markdown",
       "markdown_inline",
@@ -30,6 +31,7 @@ return {
       "yaml",
 
       -- other
+      "make",
       "cmake",
       "latex",
       "gitignore",

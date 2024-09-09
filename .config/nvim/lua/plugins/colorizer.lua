@@ -4,6 +4,7 @@ return {
   config = function()
     require("colorizer").setup({
       "html",
+      "templ",
       "css",
       "markdown",
     }, {

@@ -39,6 +39,9 @@ return {
         -- scripting languages
         ["lua_ls"] = { "lua" },
 
+        -- markup languages
+        ["templ"] = { "templ" },
+
         -- data serialization
         ["taplo"] = { "toml" },
 
@@ -66,6 +69,7 @@ return {
         -- markup languages
         "html",
         "htmx",
+        "templ",
         "cssls",
         "marksman",
 

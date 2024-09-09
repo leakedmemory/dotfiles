@@ -22,7 +22,7 @@ full_upgrade_and_clean() {
 
 upgrade
 
-PPAS=(ppa:neovim-ppa/unstable ppa:papirus/papirus ppa:zhangsongcui3371/fastfetch)
+PPAS=(ppa:papirus/papirus ppa:zhangsongcui3371/fastfetch)
 for ppa in ${PPAS[@]}; do
     sudo add-apt-repository ${ppa} -y
 done
@@ -30,7 +30,7 @@ done
 sudo apt update
 
 PKGS=(
-    neovim papirus-icon-theme clangd clang-format gdb tmux zsh kitty stow cmake
+    papirus-icon-theme clangd clang-format gdb tmux zsh kitty stow cmake
     flameshot latexmk biber zathura steam curl python3-pip libssl-dev snapd
     wget gnupg lsb-release apt-transport-https ca-certificates shfmt xsel
     fastfetch
@@ -63,9 +63,9 @@ FLATPAKS=(
     org.localsend.localsend_app
     com.heroicgameslauncher.hgl
     com.parsecgaming.parsec
-    com.discordapp.Discord
     com.obsproject.Studio
     io.github.ungoogled_software.ungoogled_chromium
+    dev.vencord.Vesktop
 )
 flatpak install flathub ${FLATPAKS[@]} -y
 
@@ -78,9 +78,9 @@ PIPS=(grip black pipenv)
 pip install ${PIPS[@]}
 
 # install rust
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
-UNLOCKED_CRATES=(cargo-update eza bat ripgrep tree-sitter-cli)
+UNLOCKED_CRATES=(cargo-update eza bat ripgrep tree-sitter-cli bob-nvim)
 cargo install ${UNLOCKED_CRATES[@]}
 LOCKED_CRATES=(zoxide bat serie)
 cargo install --locked ${LOCKED_CRATES[@]}

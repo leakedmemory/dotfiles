@@ -49,6 +49,7 @@ and finish with manual installs/configurations:
 - set default media player to VLC
 - install [node](https://nodejs.org/en/download/package-manager)
   - install prettier
+  - install pnpm
 - install nerd-fonts getting inside ~/repos/nerd-fonts and running ./install.sh
 - [install go](https://go.dev/doc/install)
 - [install tmux plugins](https://github.com/tmux-plugins/tpm?tab=readme-ov-file#installing-plugins)

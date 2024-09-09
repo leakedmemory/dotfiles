@@ -16,3 +16,5 @@
 --glob=!*.lock
 --glob=!*.o
 --glob=!*.gcno
+--glob=!**/static/*/*.min.*
+--glob=!**/static/assets/*

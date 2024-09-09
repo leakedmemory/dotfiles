@@ -9,7 +9,9 @@ export XDG_CONFIG_HOME=$HOME/.config
 export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 
 # nvm
 export NVM_DIR="$HOME/.nvm"
@@ -49,8 +51,8 @@ zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
 zinit cdreplay -q
 
 # keybinds
-bindkey "[[A" history-search-backward
-bindkey "[[B" history-search-forward
+bindkey "${terminfo[kcuu1]}" history-search-backward
+bindkey "${terminfo[kcud1]}" history-search-forward
 
 # history
 HISTSIZE=5000
