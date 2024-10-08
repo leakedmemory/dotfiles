@@ -7,10 +7,9 @@ return {
       -- programming languages
       "c",
       "rust",
-      "asm",
+      "go",
       "javascript",
       "jsdoc",
-      "go",
 
       -- scripting languages
       "lua",
@@ -32,14 +31,13 @@ return {
 
       -- other
       "make",
-      "cmake",
       "latex",
       "gitignore",
     },
     highlight = { enable = true },
     indent = { enable = true },
   },
-  config = function(_, opts)
+  config = function(spec, opts)
     require("nvim-treesitter.configs").setup(opts)
   end,
 }

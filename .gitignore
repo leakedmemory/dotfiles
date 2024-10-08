@@ -1,5 +1,2 @@
 .config/tmux/plugins/
 .config/nvim/lazy.lock
-.config/btop/*.log
-
-.zsh/catppuccin_latte-zsh-syntax-highlighting.zsh
