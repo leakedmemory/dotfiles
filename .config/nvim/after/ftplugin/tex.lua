@@ -3,6 +3,7 @@ local opt = vim.opt_local
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
+opt.expandtab = false
 
 opt.foldmethod = "expr"
 opt.foldexpr = "vimtex#fold#level(v:lnum)"
