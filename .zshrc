@@ -1,5 +1,5 @@
 ZSH="$HOME/.zsh"
-source $ZSH/catppuccin_latte-zsh-syntax-highlighting.zsh
+
 source $ZSH/aliases.zsh
 
 export VISUAL=nvim
@@ -26,33 +26,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-# zinit
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-# download if not found
-if [ ! -d $ZINIT_HOME ]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME" --depth=1
-fi
-source "${ZINIT_HOME}/zinit.zsh"
-
-# plugins
-zinit light zsh-users/zsh-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-
-# load completions
-autoload -U compinit && compinit
-
-# completion styling
-zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
-
-# replay cached completions
-zinit cdreplay -q
-
-# keybinds
-bindkey "${terminfo[kcuu1]}" history-search-backward
-bindkey "${terminfo[kcud1]}" history-search-forward
 
 # history
 HISTSIZE=5000

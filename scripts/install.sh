@@ -33,7 +33,7 @@ PKGS=(
     papirus-icon-theme clangd clang-format gdb tmux zsh kitty stow cmake
     flameshot latexmk biber zathura steam curl python3-pip libssl-dev snapd
     wget gnupg lsb-release apt-transport-https ca-certificates shfmt xsel
-    fastfetch
+    fastfetch tree
     python$(python3 --version | awk "{print $2}" | cut -d"." -f1-2)-venv
 )
 
@@ -90,17 +90,6 @@ curl -s https://ohmyposh.dev/install.sh | bash -s
 
 # make zsh the default shell
 chsh -s $(which zsh)
-
-# enable catppuccin latte theme
-bat cache --build
-
-# catppuccin
-git clone https://github.com/catppuccin/chrome.git $HOME/repos/catppuccin-chrome --depth=1
-git clone https://github.com/catppuccin/heroic.git $HOME/repos/catppuccin-heroic --depth=1
-
-CATSYNTAX="$HOME/repos/catppuccin-zsh-syntax-highlighting"
-git clone https://github.com/catppuccin/zsh-syntax-highlighting.git $CATSYNTAX --depth=1
-cp -f $CATSYNTAX/themes/*latte*.zsh $HOME/.zsh/
 
 # tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm $HOME/.config/tmux/plugins/tpm --depth=1

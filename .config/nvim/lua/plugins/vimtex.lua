@@ -11,7 +11,7 @@ return {
       continuous = 1,
       executable = "latexmk",
       options = {
-        "-pdfxe",
+        "-xelatex",
         "-interaction=nonstopmode",
         "-synctex=1",
         "-outdir=build",

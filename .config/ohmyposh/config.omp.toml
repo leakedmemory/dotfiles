@@ -92,12 +92,3 @@ foreground_templates = [
     "{{ if eq .Code 0 }}p:closer{{ else }}p:maroon{{ end }}",
 ]
 template = "\uf105 "
-
-[palette]
-blue = "#1e66f5"
-closer = "p:os"
-lavender = "#7287fd"
-maroon = "#e64553"
-os = "#acb0be"
-pink = "#ea76cb"
-yellow = "#df8e1d"

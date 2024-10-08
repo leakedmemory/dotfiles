@@ -16,7 +16,7 @@ alias aliases="nvim $HOME/.zsh/aliases.zsh && source $HOME/.zsh/aliases.zsh"
 alias termrc="nvim $HOME/.config/kitty/kitty.conf"
 alias tmuxrc="nvim $HOME/.config/tmux/tmux.conf && tmux source $HOME/.config/tmux/tmux.conf"
 alias zshrc="nvim $HOME/.zshrc && source $HOME/.zshrc"
-alias promprc="nvim $HOME/.config/ohmyposh/config.omp.toml"
+alias promptrc="nvim $HOME/.config/ohmyposh/config.omp.toml"
 
 alias ..="cd .."
 alias ls="eza --icons"
@@ -35,10 +35,6 @@ function upgrade_func() {
   sudo apt autoremove -y
   sudo apt autoclean
 
-  echo "\nZINIT UPDATE"
-  zinit self-update
-  zinit update --all
-
   echo "\nOH MY POSH UPDATE"
   oh-my-posh upgrade
 
@@ -54,5 +50,9 @@ function upgrade_func() {
 
   echo "\nPNPM UPDATE"
   pnpm update -g -L
+
+  # update after cargo, since it's a cargo package
+  echo "\nNVIM UPDATE"
+  bob update --all
 }
 alias upgrade=upgrade_func
