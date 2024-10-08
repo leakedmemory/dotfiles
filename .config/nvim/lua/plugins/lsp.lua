@@ -11,7 +11,7 @@ return {
 
     -- this is where you enable features that only work
     -- if there is a language server active in the file
-    local lsp_attch = function(client, bufnr)
+    local lsp_attach = function(client, bufnr)
       lsp_zero.default_keymaps({ buffer = bufnr })
     end
 
