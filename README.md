@@ -45,6 +45,7 @@ sudo update-alternatives --config x-terminal-emulator
 and finish with manual installs/configurations:
 
 - set wallpaper
+- set user profile picture
 - set default browser to LibreWolf
 - set default media player to VLC
 - install [node](https://nodejs.org/en/download/package-manager)
@@ -56,7 +57,12 @@ and finish with manual installs/configurations:
 - [set shortcut to flameshot](https://askubuntu.com/a/1039949)
 - [generate ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
   and put it on github
+- [setup cloudfare dns](https://developers.cloudflare.com/1.1.1.1/ip-addresses/)
 
 ## Wallpaper
 
 [![current wallpaper](./wallpaper.jpg)](https://wallhaven.cc/w/1369v3)
+
+## User Profile Picture
+
+[![current user profile picture](./profile.jpg)](https://wallhaven.cc/w/yxpdog)
