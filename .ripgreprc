@@ -11,10 +11,12 @@
 --glob=!node_modules/*
 --glob=!dist/*
 --glob=!build/*
+--glob=!**/static/assets/*
 
 # Files to ignore
 --glob=!*.lock
+--glob=!pnpm-lock.yaml
 --glob=!*.o
 --glob=!*.gcno
+--glob=!*.gcda
 --glob=!**/static/*/*.min.*
---glob=!**/static/assets/*
