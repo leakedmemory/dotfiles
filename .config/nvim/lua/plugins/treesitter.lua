@@ -8,6 +8,7 @@ return {
       "c",
       "rust",
       "go",
+      "typescript",
       "javascript",
       "jsdoc",
 
