@@ -58,17 +58,17 @@ sudo apt update
 sudo apt install librewolf -y
 
 FLATPAKS=(
+    com.heroicgameslauncher.hgl
+    com.obsproject.Studio
+    dev.vencord.Vesktop
+    io.github.ungoogled_software.ungoogled_chromium
     org.qbittorrent.qBittorrent
     org.videolan.VLC
     org.localsend.localsend_app
-    com.heroicgameslauncher.hgl
-    com.obsproject.Studio
-    io.github.ungoogled_software.ungoogled_chromium
-    dev.vencord.Vesktop
 )
 flatpak install flathub ${FLATPAKS[@]} -y
 
-SNAPS=(nordpass btop)
+SNAPS=(btop nordpass)
 sudo snap install ${SNAPS[@]}
 
 full_upgrade_and_clean
@@ -80,10 +80,12 @@ pip install ${PIPS[@]}
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
-UNLOCKED_CRATES=(cargo-update eza bat ripgrep tree-sitter-cli bob-nvim)
+UNLOCKED_CRATES=(
+    bob-nvim cargo-update eza lychee ripgrep tree-sitter-cli typos-cli
+)
 cargo install ${UNLOCKED_CRATES[@]}
 
-LOCKED_CRATES=(zoxide bat serie)
+LOCKED_CRATES=(bat serie zoxide)
 cargo install --locked ${LOCKED_CRATES[@]}
 
 # install uv

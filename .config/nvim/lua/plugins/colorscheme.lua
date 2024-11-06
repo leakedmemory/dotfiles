@@ -8,7 +8,7 @@ return {
   },
   config = function()
     require("noirbuddy").setup({
-      preset = "minimal",
+      preset = "oxide",
     })
   end,
 }

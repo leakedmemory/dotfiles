@@ -1,9 +1,16 @@
 .git
 .gitignore
 
-scripts
 .config/tmux/plugins
 .config/nvim/lazy.lock
 
+scripts
+
+.lefthook.toml
+.lychee.toml
+.lycheecache
+.typos.toml
+
 README.md
 wallpaper.*
+profile.*

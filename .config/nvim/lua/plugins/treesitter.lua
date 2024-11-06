@@ -6,7 +6,6 @@ return {
     ensure_installed = {
       -- programming languages
       "c",
-      "rust",
       "go",
       "typescript",
       "javascript",

@@ -24,7 +24,7 @@ set({ "n", "v" }, "<LEADER>ft", "za")
 set({ "n", "v" }, "<LEADER>fo", "zR")
 set({ "n", "v" }, "<LEADER>fc", "zM")
 
--- mantain selection of text after using < and >
+-- maintain selection of text after using < and >
 set("v", ">", ">gv")
 set("v", "<", "<gv")
 
@@ -45,4 +45,4 @@ set("v", "<LEADER>p", '"_dP')
 set({ "n", "v" }, "<LEADER>y", '"+y')
 
 -- global replace of word
-set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+set("n", "<LEADER>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])

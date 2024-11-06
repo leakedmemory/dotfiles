@@ -1,0 +1,6 @@
+cache = true
+max_concurrency = 3
+include_mail = true
+
+# accepting 403 because of wallhaven
+accept = ["100..=103","200..=299","403"]

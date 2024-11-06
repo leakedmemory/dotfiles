@@ -2,7 +2,8 @@
 
 My dotfile configuration.
 
-Obs.: this assumes you are on Pop!\_OS and X11.
+Obs.: this assumes you are on Pop!\_OS and X11 (see
+[tmux-yank](https://github.com/tmux-plugins/tmux-yank?tab=readme-ov-file#linux)).
 
 ## Installing
 
@@ -57,11 +58,11 @@ and finish with manual installs/configurations:
 - [set shortcut to flameshot](https://askubuntu.com/a/1039949)
 - [generate ssh key](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key)
   and put it on github
-- [setup cloudfare dns](https://developers.cloudflare.com/1.1.1.1/ip-addresses/)
+- [setup cloudflare dns](https://developers.cloudflare.com/1.1.1.1/ip-addresses/)
 
 ## Wallpaper
 
-[![current wallpaper](./wallpaper.jpg)](https://wallhaven.cc/w/1369v3)
+[![current wallpaper](./wallpaper.jpg)](https://wallhaven.cc/w/ex59dr)
 
 ## User Profile Picture
 

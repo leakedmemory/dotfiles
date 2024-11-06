@@ -6,8 +6,9 @@ alias aliases="nvim $HOME/.zsh/aliases.zsh && source $HOME/.zsh/aliases.zsh"
 alias promptrc="nvim $HOME/.config/ohmyposh/config.omp.toml"
 # opening the directory directly doesn't allow navigation using telescope
 function nvrc_func() {
-    SAVE_PWD=($PWD)
-    cd $HOME/.config/nvim && nvim . && cd $SAVE_PWD
+  pushd $HOME/.config/nvim > /dev/null
+  nvim .
+  popd > /dev/null
 }
 alias nvrc=nvrc_func
 

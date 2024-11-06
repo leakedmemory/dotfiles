@@ -1,0 +1,6 @@
+[default.extend-words]
+pn = "pn"
+serie = "serie"
+
+# .config/nvim/plugin/keymaps.lua
+fo = "fo"

@@ -27,7 +27,6 @@ return {
       servers = {
         -- programming languages
         ["clangd"] = { "c", "cpp" },
-        ["rust_analyzer"] = { "rust" },
         ["gopls"] = { "go" },
         ["biome"] = {
           "astro",
@@ -61,7 +60,6 @@ return {
       ensure_installed = {
         -- programming languages
         "clangd",
-        "rust_analyzer",
         "gopls",
         "ts_ls", -- js and ts lsp
         "biome", -- web stuff linter and formatter
