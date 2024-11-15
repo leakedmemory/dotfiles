@@ -7,6 +7,7 @@ return {
       -- programming languages
       "c",
       "go",
+      "gomod",
       "typescript",
       "javascript",
       "jsdoc",
