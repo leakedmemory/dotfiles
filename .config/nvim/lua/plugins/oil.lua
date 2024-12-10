@@ -8,18 +8,17 @@ return {
       "<CMD>Oil<CR>",
     },
   },
-  opts = {
-    view_options = {
-      show_hidden = false,
-      is_hidden_file = function(name, bufnr)
-        -- hide files ending with "_templ.go"
-        if name:match("_templ%.go$") then
-          return true
-        end
-      end,
-    },
-  },
-  config = function(spec, opts)
-    require("oil").setup(opts)
+  config = function()
+    require("oil").setup({
+      view_options = {
+        show_hidden = false,
+        is_hidden_file = function(name, bufnr)
+          -- hide files ending with "_templ.go"
+          if name:match("_templ%.go$") then
+            return true
+          end
+        end,
+      },
+    })
   end
 }
