@@ -20,4 +20,5 @@
 --glob=!*.o
 --glob=!*.gcno
 --glob=!*.gcda
+--glob=!*.db
 --glob=!**/static/*/*.min.*
