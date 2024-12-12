@@ -6,20 +6,17 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
+    -- emacs buffer style
+    local ivy_theme = require("telescope.themes").get_ivy
+
     require("telescope").setup({
-      defaults = {
+      defaults = ivy_theme({
         layout_config = {
           -- always show the preview if space allows
           -- needed because font size 20 is too big to the default config
           preview_cutoff = 1,
         },
-      },
-      pickers = {
-        find_files = {
-          -- emacs buffer style
-          theme = "ivy",
-        },
-      },
+      }),
     })
 
     local builtin = require("telescope.builtin")
@@ -29,9 +26,11 @@ return {
     -- depends on the `.ripgreprc` file and follows this link's description
     -- <https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#configuration-file>
     vim.keymap.set("n", "<LEADER>tn", builtin.find_files)
-    vim.keymap.set("n", "<LEADER>tl", function()
-      builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    vim.keymap.set("n", "<LEADER>tl", builtin.live_grep)
+    vim.keymap.set("v", "<LEADER>tl", function()
+      builtin.grep_string({
+        word_match = "-w", -- search for exact word match
+      })
     end)
-    vim.keymap.set("v", "<LEADER>tl", builtin.grep_string)
   end,
 }
