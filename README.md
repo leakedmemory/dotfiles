@@ -45,6 +45,7 @@ sudo update-alternatives --config x-terminal-emulator
 
 and finish with manual installs/configurations:
 
+- install [proton](https://proton.me) products
 - set wallpaper
 - set user profile picture
 - set default browser to LibreWolf

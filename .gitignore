@@ -1,4 +1,2 @@
 .config/tmux/plugins/
 .config/nvim/lazy.lock
-
-.lycheecache

@@ -68,7 +68,7 @@ FLATPAKS=(
 )
 flatpak install flathub ${FLATPAKS[@]} -y
 
-SNAPS=(btop nordpass)
+SNAPS=(btop)
 sudo snap install ${SNAPS[@]}
 
 full_upgrade_and_clean
