@@ -27,27 +27,39 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-# history
+# KEYBINDS
+
+# [Ctrl-RightArrow] - move forward one word
+bindkey "^[[1;5C" forward-word
+# [Ctrl-LeftArrow] - move backward one word
+bindkey "^[[1;5D" backward-word
+# [Ctrl-Delete] - delete forward one word
+bindkey "^[[3;5~" kill-word
+# [Ctrl-Backspace] - delete backward one word
+bindkey "^H" backward-kill-word
+
+# HISTORY
+
 HISTSIZE=5000
 HISTFILE=$HOME/.zsh_history
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
 setopt appendhistory  # append command to history rather than overwriting
-setopt sharehistory  # share history accross sessions
+setopt sharehistory  # share history across sessions
 setopt hist_ignore_space  # don't append command if it starts with space
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_find_no_dups  # ignore dups when searching command
 
-# integrations
+# INTEGRATIONS
 
-## tmux
+## TMUX
+
 if [ -z "$TMUX" ]; then  # start tmux session if none is found
     tmux attach -t TMUX || tmux new -s TMUX
 fi
 
-### ctrl+d behavior
 exit_or_kill_tmux() {
     if [ -n "$TMUX" ]; then
         n_panes=$(tmux list-panes | wc -l)
@@ -57,7 +69,10 @@ exit_or_kill_tmux() {
     fi
 }
 zle -N exit_or_kill_tmux
+# [Ctrl-D]
 bindkey "^D" exit_or_kill_tmux
 
+# prompt
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.omp.toml)"
+# better `cd`
 eval "$(zoxide init --cmd cd zsh)"

@@ -1,10 +1,11 @@
-# config files
+# CONFIG FILES
+
 alias termrc="nvim $HOME/.config/kitty/kitty.conf"
 alias tmuxrc="nvim $HOME/.config/tmux/tmux.conf && tmux source $HOME/.config/tmux/tmux.conf"
 alias zshrc="nvim $HOME/.zshrc && source $HOME/.zshrc"
 alias aliases="nvim $HOME/.zsh/aliases.zsh && source $HOME/.zsh/aliases.zsh"
 alias promptrc="nvim $HOME/.config/ohmyposh/config.omp.toml"
-# opening the directory directly doesn't allow navigation using telescope
+# opening the directory directly doesn't allow proper navigation using telescope
 function nvrc_func() {
   pushd $HOME/.config/nvim > /dev/null
   nvim .
@@ -12,7 +13,8 @@ function nvrc_func() {
 }
 alias nvrc=nvrc_func
 
-# git
+# GIT
+
 alias gad="git add"
 alias gag="git add --all"
 alias gbr="git branch"
@@ -30,6 +32,8 @@ alias gun="git restore --staged"
 alias gsh="git stash"
 alias gst="git status"
 alias gl="serie --protocol kitty"
+
+# MISC
 
 alias ..="cd .."
 alias ls="eza --icons"
