@@ -44,5 +44,11 @@ set("v", "<LEADER>p", '"_dP')
 -- copy to the OS's clipboard
 set({ "n", "v" }, "<LEADER>y", '"+y')
 
--- global replace of word
-set("n", "<LEADER>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- global replace in file of exact word under cursor
+set("n", "<LEADER>s", [[:s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
+-- search for exact word under cursor
+set("n", "<LEADER>e", [[/\<<C-r><C-w>\><CR>]])
+
+-- search for exact word
+set("n", "<LEADER>w", [[/\<\><Left><Left>]])

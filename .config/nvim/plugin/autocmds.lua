@@ -6,5 +6,5 @@ augroup("CustomGroup", { clear = true })
 -- trim white space at the end of lines
 autocmd("BufWritePre", {
   pattern = "*",
-  command = "%s/\\s\\+$//e"
+  command = "s/\\s\\+$//e"
 })
