@@ -55,7 +55,6 @@ setopt hist_find_no_dups  # ignore dups when searching command
 # INTEGRATIONS
 
 ## TMUX
-
 if [ -z "$TMUX" ]; then  # start tmux session if none is found
     tmux attach -t TMUX || tmux new -s TMUX
 fi
@@ -72,7 +71,12 @@ zle -N exit_or_kill_tmux
 # [Ctrl-D]
 bindkey "^D" exit_or_kill_tmux
 
-# prompt
+## FASTFETCH
+fastfetch
+echo ""
+
+## OH-MY-POSH PROMPT
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/config.omp.toml)"
-# better `cd`
+
+## ZOXIDE (BETTER `cd`)
 eval "$(zoxide init --cmd cd zsh)"

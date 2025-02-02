@@ -11,7 +11,7 @@
 --glob=!node_modules/*
 --glob=!dist/*
 --glob=!build/*
---glob=!**/static/assets/*
+--glob=!**/static/vendor/*
 
 # Files to ignore
 --glob=!*.lock
@@ -21,4 +21,3 @@
 --glob=!*.gcno
 --glob=!*.gcda
 --glob=!*.db
---glob=!**/static/*/*.min.*
