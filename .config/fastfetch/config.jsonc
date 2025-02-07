@@ -11,5 +11,9 @@
     "memory",
     "os",
     "kernel",
+    {
+      "type": "localip",
+      "compact": true,
+    }
   ]
 }
