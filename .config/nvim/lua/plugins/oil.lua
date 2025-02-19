@@ -13,8 +13,8 @@ return {
       view_options = {
         show_hidden = false,
         is_hidden_file = function(name, bufnr)
-          -- hide files ending with "_templ.go"
-          if name:match("_templ%.go$") then
+          -- hide templ generated files
+          if name:match("_templ%.go$") or name:match("_templ%.txt$") then
             return true
           end
         end,
