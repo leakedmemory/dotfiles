@@ -78,6 +78,6 @@ function upgrade_func() {
   bob update --all
 
   echo "\nPNPM UPDATE"
-  pnpm update -g -L
+  pnpm update -g
 }
 alias upgrade=upgrade_func
