@@ -30,10 +30,9 @@ done
 sudo apt update
 
 PKGS=(
-    papirus-icon-theme clangd clang-format gdb tmux zsh kitty stow cmake
-    flameshot latexmk biber zathura steam curl python3-pip libssl-dev snapd
-    wget gnupg lsb-release apt-transport-https ca-certificates shfmt xsel
-    fastfetch tree
+    papirus-icon-theme clang-format gdb tmux zsh kitty stow cmake flameshot
+    latexmk biber zathura steam curl python3-pip libssl-dev snapd wget shfmt
+    xsel fastfetch tree
     python$(python3 --version | awk "{print $2}" | cut -d"." -f1-2)-venv
 )
 
@@ -42,25 +41,11 @@ sudo apt install ${PKGS[@]} -y
 
 upgrade
 
-# librewolf
-distro=$(if echo " una bookworm vanessa focal jammy bullseye vera uma " | grep -q " $(lsb_release -sc) "; then lsb_release -sc; else echo focal; fi)
-wget -O- https://deb.librewolf.net/keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/librewolf.gpg
-sudo tee /etc/apt/sources.list.d/librewolf.sources <<EOF >/dev/null
-Types: deb
-URIs: https://deb.librewolf.net
-Suites: $distro
-Components: main
-Architectures: amd64
-Signed-By: /usr/share/keyrings/librewolf.gpg
-EOF
-remove_locks
-sudo apt update
-sudo apt install librewolf -y
-
 FLATPAKS=(
     com.heroicgameslauncher.hgl
     com.obsproject.Studio
     dev.vencord.Vesktop
+    io.gitlab.librewolf-community
     io.github.ungoogled_software.ungoogled_chromium
     org.qbittorrent.qBittorrent
     org.videolan.VLC
