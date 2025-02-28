@@ -73,8 +73,8 @@ cargo install ${UNLOCKED_CRATES[@]}
 LOCKED_CRATES=(bat serie zoxide)
 cargo install --locked ${LOCKED_CRATES[@]}
 
-# install uv
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# install ollama
+curl -fsSL https://ollama.ai/install.sh | sh
 
 # install oh-my-posh
 curl -s https://ohmyposh.dev/install.sh | bash -s
