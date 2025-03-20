@@ -11,6 +11,7 @@
 --glob=!node_modules/*
 --glob=!dist/*
 --glob=!build/*
+--glob=!**/static/assets/*
 --glob=!**/static/vendor/*
 
 # Files to ignore
