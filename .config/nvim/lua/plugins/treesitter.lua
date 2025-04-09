@@ -6,7 +6,6 @@ return {
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
         -- programming languages
-        "c",
         "go",
         "gomod",
         "typescript",

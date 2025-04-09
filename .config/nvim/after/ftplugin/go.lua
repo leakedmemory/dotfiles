@@ -4,3 +4,5 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.expandtab = false
 
 vim.keymap.set("n", "<LEADER>rn", ":!go run %<CR>")
+
+vim.cmd("abbr iferr if err != nil")

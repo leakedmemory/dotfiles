@@ -31,6 +31,7 @@ alias gre="git restore"
 alias gun="git restore --staged"
 alias gsh="git stash"
 alias gst="git status"
+alias gta="git tag"
 alias gl="serie --protocol kitty"
 
 # MISC

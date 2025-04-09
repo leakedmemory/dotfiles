@@ -22,3 +22,4 @@
 --glob=!*.gcno
 --glob=!*.gcda
 --glob=!*.db
+--glob=!go.sum

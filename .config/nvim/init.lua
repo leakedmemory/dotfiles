@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.g.c_syntax_for_h = true
 
 vim.diagnostic.enable(false)
 

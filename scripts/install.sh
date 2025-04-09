@@ -30,9 +30,8 @@ done
 sudo apt update
 
 PKGS=(
-    papirus-icon-theme clang-format gdb tmux zsh kitty stow cmake flameshot
-    latexmk biber zathura steam curl python3-pip libssl-dev snapd wget shfmt
-    xsel fastfetch tree
+    papirus-icon-theme tmux zsh kitty stow flameshot latexmk biber zathura steam
+    curl python3-pip libssl-dev snapd wget shfmt xsel fastfetch tree bluez*
     python$(python3 --version | awk "{print $2}" | cut -d"." -f1-2)-venv
 )
 

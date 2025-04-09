@@ -26,7 +26,6 @@ return {
       },
       servers = {
         -- programming languages
-        ["clangd"] = { "c", "cpp" },
         ["gopls"] = { "go" },
         ["biome"] = {
           "astro",
@@ -59,7 +58,6 @@ return {
     require("mason-lspconfig").setup({
       ensure_installed = {
         -- programming languages
-        "clangd",
         "gopls",
         "ts_ls", -- js and ts lsp
         "biome", -- web stuff linter and formatter
