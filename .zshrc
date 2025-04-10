@@ -29,6 +29,10 @@ esac
 
 # KEYBINDS
 
+# [Home]
+bindkey "^[[1~" beginning-of-line
+# [End]
+bindkey "^[[4~" end-of-line
 # [Ctrl-RightArrow] - move forward one word
 bindkey "^[[1;5C" forward-word
 # [Ctrl-LeftArrow] - move backward one word
